@@ -1,97 +1,848 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>[GYM NAME] - Start Your Free Trial Today</title>
-    <link rel="stylesheet" href="style.css"> 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BookMore — Airbnb Listing Optimization Tbilisi</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2ec;
+    --accent: #e8440a;
+    --accent2: #f5a623;
+    --gray: #1a1a1a;
+    --gray2: #2a2a2a;
+    --text-muted: #888;
+    --font-display: 'Syne', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  .lang-ge { display: none; }
+  body.ge .lang-en { display: none; }
+  body.ge .lang-ge { display: block; }
+  body.ge span.lang-ge { display: inline; }
+  body.ge span.lang-en { display: none; }
+  span.lang-ge { display: none; }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 2rem;
+    background: rgba(10,10,10,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .logo {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: -0.03em;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .logo span { color: var(--accent); }
+
+  .nav-right { display: flex; align-items: center; gap: 1rem; }
+
+  .lang-toggle {
+    background: var(--gray2);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 100px;
+    display: flex;
+    overflow: hidden;
+  }
+
+  .lang-btn {
+    padding: 0.35rem 0.9rem;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    transition: all 0.2s;
+  }
+
+  .lang-btn.active {
+    background: var(--accent);
+    color: white;
+  }
+
+  .nav-cta {
+    background: var(--accent);
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 100px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+
+  .nav-cta:hover { opacity: 0.85; }
+
+  section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 8rem;
+    max-width: 100%;
+    padding-left: 6vw;
+    padding-right: 6vw;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(232,68,10,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(232,68,10,0.12);
+    border: 1px solid rgba(232,68,10,0.3);
+    border-radius: 100px;
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--accent2);
+    margin-bottom: 2rem;
+    width: fit-content;
+  }
+
+  .hero-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 8vw, 7rem);
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.5rem;
+  }
+
+  h1 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: #aaa;
+    max-width: 540px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary:hover { background: #d03a06; transform: translateY(-1px); }
+
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    padding: 0.9rem 2rem;
+    border-radius: 100px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: all 0.2s;
+  }
+
+  .btn-secondary:hover { border-color: rgba(255,255,255,0.4); }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 4rem;
+    flex-wrap: wrap;
+  }
+
+  .stat-item { }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  .stat-num span { color: var(--accent); }
+  .stat-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem; }
+
+  .divider {
+    border: none;
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+    margin: 0 2rem;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .problems-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+
+  .problem-card {
+    background: var(--black);
+    padding: 2rem;
+    transition: background 0.2s;
+  }
+
+  .problem-card:hover { background: var(--gray); }
+
+  .problem-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .problem-card h3 {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--white);
+  }
+
+  .problem-card p {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .process-list {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .process-item {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 1.5rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    position: relative;
+  }
+
+  .process-item:last-child { border-bottom: none; }
+
+  .process-num {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 800;
+    color: rgba(255,255,255,0.08);
+    line-height: 1;
+    padding-top: 0.2rem;
+  }
+
+  .process-content h3 {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+
+  .process-content p {
+    font-size: 0.9rem;
+    color: #aaa;
+    max-width: 500px;
+  }
+
+  .case-study {
+    background: var(--gray);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 20px;
+    padding: 3rem;
+    margin-top: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .case-study::before {
+    content: '"';
+    position: absolute;
+    top: -1rem; left: 1.5rem;
+    font-family: var(--font-display);
+    font-size: 8rem;
+    font-weight: 800;
+    color: rgba(232,68,10,0.15);
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .case-metrics {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .case-metric {
+    background: rgba(232,68,10,0.1);
+    border: 1px solid rgba(232,68,10,0.2);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    text-align: center;
+  }
+
+  .case-metric-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .case-metric-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+  }
+
+  .pricing-box {
+    background: var(--gray);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 3rem;
+    margin-top: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media (max-width: 600px) {
+    .pricing-box { grid-template-columns: 1fr; gap: 2rem; }
+  }
+
+  .price-big {
+    font-family: var(--font-display);
+    font-size: 5rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .price-label {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+  }
+
+  .price-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .price-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    color: #ccc;
+  }
+
+  .price-features li::before {
+    content: '→';
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 0.05rem;
+  }
+
+  .booking-section {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 6rem 2rem;
+  }
+
+  .booking-form {
+    background: var(--gray);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-top: 2.5rem;
+    text-align: left;
+  }
+
+  .form-group {
+    margin-bottom: 1.25rem;
+  }
+
+  label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.4rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  input, textarea, select {
+    width: 100%;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px;
+    padding: 0.8rem 1rem;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--accent);
+  }
+
+  textarea { resize: vertical; min-height: 100px; }
+
+  select option { background: #1a1a1a; }
+
+  .submit-btn {
+    width: 100%;
+    background: var(--accent);
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-display);
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+  }
+
+  .submit-btn:hover { background: #d03a06; }
+
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .success-msg h3 {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  footer {
+    border-top: 1px solid rgba(255,255,255,0.06);
+    padding: 2rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem; }
+    .nav-cta { display: none; }
+    section { padding: 4rem 1.25rem; }
+    .hero { padding: 7rem 1.25rem 4rem; }
+    .hero-stats { gap: 1.5rem; }
+  }
+</style>
 </head>
 <body>
 
-    <div id="sticky-cta-bar" class="fixed-bottom">
-        <a href="#pricing-table" class="btn btn-primary">JOIN NOW</a>
-        <a href="#schedule-section" class="btn btn-secondary">VIEW SCHEDULE</a>
+<nav>
+  <a href="#" class="logo">Book<span>More</span></a>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
+      <button class="lang-btn" onclick="setLang('ge')" id="btn-ge">GE</button>
+    </div>
+    <a href="#book" class="nav-cta">
+      <span class="lang-en">Book a Session</span>
+      <span class="lang-ge">სესიის დაჯავშნა</span>
+    </a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">
+    <span class="lang-en">Airbnb Optimization · Tbilisi, Georgia</span>
+    <span class="lang-ge">Airbnb ოპტიმიზაცია · თბილისი, საქართველო</span>
+  </div>
+
+  <h1 class="lang-en">More guests.<br>More <em>bookings.</em></h1>
+  <h1 class="lang-ge">მეტი სტუმარი.<br>მეტი <em>ჯავშანი.</em></h1>
+
+  <p class="hero-sub lang-en">We optimize your Airbnb listing so more people find it, click it, and book it. Title, photos, pricing, description — everything that matters.</p>
+  <p class="hero-sub lang-ge">ვაუმჯობესებთ თქვენს Airbnb-ის განცხადებას, რომ მეტმა ადამიანმა იპოვოს, დააწკაპოს და დაჯავშნოს. სათაური, ფოტოები, ფასი, აღწერა — ყველაფერი, რაც მნიშვნელოვანია.</p>
+
+  <div class="hero-actions">
+    <a href="#book" class="btn-primary lang-en">Book Free Consultation</a>
+    <a href="#book" class="btn-primary lang-ge">უფასო კონსულტაციის დაჯავშნა</a>
+    <a href="#how" class="btn-secondary lang-en">See how it works</a>
+    <a href="#how" class="btn-secondary lang-ge">როგორ მუშაობს</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-num">2<span>→</span>365</div>
+      <div class="stat-label lang-en">bookings in a year (real client)</div>
+      <div class="stat-label lang-ge">ჯავშანი წელიწადში (რეალური კლიენტი)</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">15<span>%</span></div>
+      <div class="stat-label lang-en">commission only on results</div>
+      <div class="stat-label lang-ge">საკომისიო მხოლოდ შედეგზე</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">6<span>mo</span></div>
+      <div class="stat-label lang-en">partnership period</div>
+      <div class="stat-label lang-ge">თანამშრომლობის პერიოდი</div>
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<section>
+  <div class="section-label lang-en">The Problem</div>
+  <div class="section-label lang-ge">პრობლემა</div>
+  <h2 class="lang-en">Why your listing<br>isn't getting booked</h2>
+  <h2 class="lang-ge">რატომ არ ჯავშნიან<br>თქვენს განცხადებას</h2>
+
+  <div class="problems-grid">
+    <div class="problem-card">
+      <div class="problem-icon">📸</div>
+      <h3 class="lang-en">Wrong cover photo</h3>
+      <h3 class="lang-ge">არასწორი მთავარი ფოტო</h3>
+      <p class="lang-en">Your first photo determines whether guests click or scroll past. Most hosts choose the wrong one.</p>
+      <p class="lang-ge">პირველი ფოტო განსაზღვრავს, დააწკაპოს თუ გადაახვიოს სტუმარი. უმეტეს შემთხვევაში ირჩევენ არასწორს.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">🔍</div>
+      <h3 class="lang-en">Title with no keywords</h3>
+      <h3 class="lang-ge">სათაური კეივორდების გარეშე</h3>
+      <p class="lang-en">If your title doesn't match what guests search, Airbnb won't show your listing. Simple as that.</p>
+      <p class="lang-ge">თუ სათაური არ ემთხვევა სტუმრების ძიებას, Airbnb არ გაჩვენებს თქვენს განცხადებას.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">💰</div>
+      <h3 class="lang-en">Wrong pricing</h3>
+      <h3 class="lang-ge">არასწორი ფასი</h3>
+      <p class="lang-en">Too high kills bookings. Too low kills revenue. Most hosts are leaving money on the table.</p>
+      <p class="lang-ge">ძალიან მაღალი ფასი კლავს ჯავშნებს. ძალიან დაბალი — შემოსავალს. უმეტეს მასპინძელს ფული ეკარგება.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">📝</div>
+      <h3 class="lang-en">Generic description</h3>
+      <h3 class="lang-ge">ზოგადი აღწერა</h3>
+      <p class="lang-en">"Nice apartment in good location" tells guests nothing. Your description should make them want to book immediately.</p>
+      <p class="lang-ge">"კარგ ადგილას მდებარე ბინა" სტუმრებს არაფერს ეუბნება. აღწერა უნდა აიძულებდეს მყისიერ დაჯავშნას.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">⚙️</div>
+      <h3 class="lang-en">Bad settings</h3>
+      <h3 class="lang-ge">არასწორი პარამეტრები</h3>
+      <p class="lang-en">Instant Book off, wrong minimum stays, missing amenities — small settings that quietly kill your ranking.</p>
+      <p class="lang-ge">Instant Book გამორთული, არასწორი მინიმალური ღამეები — პატარა პარამეტრები, რომლებიც ჩუმად კლავს რეიტინგს.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">📉</div>
+      <h3 class="lang-en">Algorithm changes</h3>
+      <h3 class="lang-ge">ალგორითმის ცვლილებები</h3>
+      <p class="lang-en">Airbnb updates its algorithm constantly. What worked last year may hurt you today. You need someone watching.</p>
+      <p class="lang-ge">Airbnb მუდმივად ცვლის ალგორითმს. გასული წლის მეთოდები დღეს შეიძლება ზიანს გაყენებდეს.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section id="how">
+  <div class="section-label lang-en">How It Works</div>
+  <div class="section-label lang-ge">როგორ მუშაობს</div>
+  <h2 class="lang-en">Simple. Fast. Results.</h2>
+  <h2 class="lang-ge">მარტივი. სწრაფი. შედეგი.</h2>
+
+  <div class="process-list">
+    <div class="process-item">
+      <div class="process-num">01</div>
+      <div class="process-content">
+        <h3 class="lang-en">You reach out</h3>
+        <h3 class="lang-ge">გვიკავშირდებით</h3>
+        <p class="lang-en">Fill the form below. We review your listing and get back to you within 24 hours with a free audit of what's wrong.</p>
+        <p class="lang-ge">შეავსეთ ქვემოთ მოცემული ფორმა. განვიხილავთ თქვენს განცხადებას და 24 საათში გამოგიგზავნით უფასო აუდიტს.</p>
+      </div>
+    </div>
+    <div class="process-item">
+      <div class="process-num">02</div>
+      <div class="process-content">
+        <h3 class="lang-en">We optimize everything</h3>
+        <h3 class="lang-ge">ვაოპტიმიზებთ ყველაფერს</h3>
+        <p class="lang-en">Title, description, photos, pricing, settings. We may visit your property to take better photos if needed.</p>
+        <p class="lang-ge">სათაური, აღწერა, ფოტოები, ფასი, პარამეტრები. საჭიროების შემთხვევაში ვახლით უკეთესი ფოტოების გადასაღებად.</p>
+      </div>
+    </div>
+    <div class="process-item">
+      <div class="process-num">03</div>
+      <div class="process-content">
+        <h3 class="lang-en">Bookings increase</h3>
+        <h3 class="lang-ge">ჯავშნები იზრდება</h3>
+        <p class="lang-en">We monitor weekly and adjust as needed. You watch your calendar fill up.</p>
+        <p class="lang-ge">ყოველ კვირას ვაკვირდებით და საჭიროებისამებრ ვარეგულირებთ. თქვენ კი კალენდრის შევსებას უყურებთ.</p>
+      </div>
+    </div>
+    <div class="process-item">
+      <div class="process-num">04</div>
+      <div class="process-content">
+        <h3 class="lang-en">You pay only on results</h3>
+        <h3 class="lang-ge">იხდით მხოლოდ შედეგზე</h3>
+        <p class="lang-en">15% of booking revenue for 6 months. No bookings, no payment. After 6 months, entirely your choice to continue.</p>
+        <p class="lang-ge">ჯავშნის შემოსავლის 15% 6 თვის განმავლობაში. ჯავშნები არ გაიზარდა — არაფერს გადაიხდით. 6 თვის შემდეგ — თქვენი გადაწყვეტილება.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section>
+  <div class="section-label lang-en">Real Result</div>
+  <div class="section-label lang-ge">რეალური შედეგი</div>
+  <h2 class="lang-en">From 2 bookings<br>to fully booked</h2>
+  <h2 class="lang-ge">2 ჯავშნიდან<br>სრულ დაჯავშნამდე</h2>
+
+  <div class="case-study">
+    <p style="font-size: 1.1rem; color: #ccc; max-width: 600px; line-height: 1.8;" class="lang-en">A Tbilisi host had only 2 bookings in an entire year. After we optimized the title, photos, description and pricing — the calendar was fully booked for the next 12 months.</p>
+    <p style="font-size: 1.1rem; color: #ccc; max-width: 600px; line-height: 1.8;" class="lang-ge">თბილისელ მასპინძელს მთელი წლის განმავლობაში მხოლოდ 2 ჯავშანი ჰქონდა. სათაურის, ფოტოების, აღწერის და ფასის ოპტიმიზაციის შემდეგ კალენდარი შემდეგი 12 თვისთვის სრულად შეივსო.</p>
+    <div class="case-metrics">
+      <div class="case-metric">
+        <div class="case-metric-num">2</div>
+        <div class="case-metric-label lang-en">bookings before</div>
+        <div class="case-metric-label lang-ge">ჯავშანი ადრე</div>
+      </div>
+      <div class="case-metric">
+        <div class="case-metric-num" style="color: #4ade80;">365</div>
+        <div class="case-metric-label lang-en">days booked after</div>
+        <div class="case-metric-label lang-ge">დღე დაჯავშნული შემდეგ</div>
+      </div>
+      <div class="case-metric">
+        <div class="case-metric-num">Tbilisi</div>
+        <div class="case-metric-label lang-en">location</div>
+        <div class="case-metric-label lang-ge">ლოკაცია</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<section>
+  <div class="section-label lang-en">Pricing</div>
+  <div class="section-label lang-ge">ფასი</div>
+  <h2 class="lang-en">You only pay<br>when you earn</h2>
+  <h2 class="lang-ge">იხდით მხოლოდ<br>მაშინ, როცა გამოიმუშავებთ</h2>
+
+  <div class="pricing-box">
+    <div>
+      <div class="price-big">15%</div>
+      <div class="price-label lang-en">of monthly booking revenue · 6 months</div>
+      <div class="price-label lang-ge">ყოველთვიური ჯავშნის შემოსავლიდან · 6 თვე</div>
+      <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);" class="lang-en">Example: if you earn $500/month from bookings, you keep $425 and we take $75.</p>
+      <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);" class="lang-ge">მაგალითი: თუ ჯავშნებიდან $500 გამოიმუშავეთ, $425 თქვენი რჩება, $75-ს ვიღებთ ჩვენ.</p>
+    </div>
+    <ul class="price-features lang-en">
+      <li>Full listing audit and optimization</li>
+      <li>Title, description, photos rewrite</li>
+      <li>Pricing strategy setup</li>
+      <li>Settings and amenities audit</li>
+      <li>On-site photography if needed</li>
+      <li>Weekly monitoring for 6 months</li>
+      <li>Algorithm update tracking</li>
+      <li>No bookings = no payment</li>
+    </ul>
+    <ul class="price-features lang-ge">
+      <li>სრული აუდიტი და ოპტიმიზაცია</li>
+      <li>სათაური, აღწერა, ფოტოების გადაწერა</li>
+      <li>ფასის სტრატეგიის შემუშავება</li>
+      <li>პარამეტრების და სერვისების აუდიტი</li>
+      <li>ადგილზე ფოტოგრაფია საჭიროებისას</li>
+      <li>ყოველკვირეული მონიტორინგი 6 თვე</li>
+      <li>ალგორითმის ცვლილებების თვალყური</li>
+      <li>ჯავშნები არ გაიზარდა = არ გადაიხდით</li>
+    </ul>
+  </div>
+</section>
+
+<hr class="divider">
+
+<div class="booking-section" id="book">
+  <div class="section-label lang-en" style="text-align: center;">Book a Session</div>
+  <div class="section-label lang-ge" style="text-align: center;">სესიის დაჯავშნა</div>
+  <h2 class="lang-en">Ready to get<br>more bookings?</h2>
+  <h2 class="lang-ge">მზად ხართ მეტი<br>ჯავშნისთვის?</h2>
+  <p style="color: var(--text-muted); margin-top: 1rem;" class="lang-en">Fill this out and we'll send you a free audit of your listing within 24 hours.</p>
+  <p style="color: var(--text-muted); margin-top: 1rem;" class="lang-ge">შეავსეთ ფორმა და 24 საათში გამოგიგზავნით თქვენი განცხადების უფასო აუდიტს.</p>
+
+  <div class="booking-form">
+    <div id="form-content">
+      <div class="form-group">
+        <label class="lang-en">Your name</label>
+        <label class="lang-ge">თქვენი სახელი</label>
+        <input type="text" id="name" placeholder="Nino / Giorgi">
+      </div>
+      <div class="form-group">
+        <label class="lang-en">Phone number (WhatsApp / Telegram)</label>
+        <label class="lang-ge">ტელეფონის ნომერი (WhatsApp / Telegram)</label>
+        <input type="tel" id="phone" placeholder="+995 5XX XXX XXX">
+      </div>
+      <div class="form-group">
+        <label class="lang-en">Your Airbnb listing URL (optional)</label>
+        <label class="lang-ge">თქვენი Airbnb-ის ბმული (არასავალდებულო)</label>
+        <input type="url" id="listing" placeholder="https://airbnb.com/rooms/...">
+      </div>
+      <div class="form-group">
+        <label class="lang-en">How many bookings do you get per month?</label>
+        <label class="lang-ge">რამდენი ჯავშანი გაქვთ თვეში?</label>
+        <select id="bookings">
+          <option value="" class="lang-en">Select...</option>
+          <option value="0-2" class="lang-en">0–2 (almost none)</option>
+          <option value="3-6" class="lang-en">3–6</option>
+          <option value="7-15" class="lang-en">7–15</option>
+          <option value="15+" class="lang-en">15+</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="lang-en">Anything else you want to say?</label>
+        <label class="lang-ge">სხვა რამე გინდათ დაამატოთ?</label>
+        <textarea id="message" placeholder="..."></textarea>
+      </div>
+      <button class="submit-btn lang-en" onclick="submitForm()">Send — get my free audit →</button>
+      <button class="submit-btn lang-ge" onclick="submitForm()">გაგზავნა — მინდა უფასო აუდიტი →</button>
     </div>
 
-    <header id="hero-section">
-        <video autoplay muted loop playsinline id="hero-video">
-            <source src="/assets/gym-vibe-loop.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="hero-content">
-            <h1>[GYM NAME]: Forged in [CITY/NEIGHBORHOOD].</h1>
-            <p>More than a workout. It's the place where dedication meets [VIBE] and progress is non-negotiable.</p>
-            <a href="#pricing-table" class="btn btn-hero">START YOUR FREE DAY PASS</a>
-        </div>
-    </header>
+    <div class="success-msg" id="success-msg">
+      <h3 class="lang-en">Request sent!</h3>
+      <h3 class="lang-ge">მოთხოვნა გაიგზავნა!</h3>
+      <p class="lang-en" style="color: var(--text-muted); margin-top: 0.5rem;">We'll review your listing and get back to you within 24 hours.</p>
+      <p class="lang-ge" style="color: var(--text-muted); margin-top: 0.5rem;">განვიხილავთ თქვენს განცხადებას და 24 საათში დაგიკავშირდებით.</p>
+    </div>
+  </div>
+</div>
 
-    <section id="vibe-check" class="container">
-        <h2>This is Not a Chain. This is [GYM NAME].</h2>
-        <div class="vibe-grid">
-            <div class="vibe-element">
-                <iframe src="[VIRTUAL TOUR VIDEO URL]" frameborder="0" allowfullscreen></iframe>
-                <h3>Facility Walkthrough</h3>
-            </div>
-            <div class="vibe-element">
-                <div id="instagram-feed">
-                    <p>Load last 6 posts tagged at [GYM NAME] location here.</p>
-                </div>
-                <h3>Live Community Feed</h3>
-            </div>
-            <div class="vibe-element">
-                <div id="google-reviews">
-                    <p>Load Google Rating (e.g., 4.9 Stars) and recent testimonials.</p>
-                </div>
-                <h3>Trusted 5-Star Reviews</h3>
-            </div>
-        </div>
-        <a href="/about" class="btn btn-secondary">MEET OUR EXPERT COACHES</a>
-    </section>
+<footer>
+  <p>© 2025 BookMore · <span class="lang-en">Airbnb Optimization · Tbilisi, Georgia</span><span class="lang-ge">Airbnb ოპტიმიზაცია · თბილისი, საქართველო</span></p>
+  <p style="margin-top: 0.5rem;">Nika · <a href="tel:+995551309680" style="color: var(--accent); text-decoration: none;">+995 551 30 96 80</a></p>
+</footer>
 
-    <section id="services" class="container">
-        <h2>Find Your Path to Progress</h2>
-        <div class="service-cards-grid">
-            <div class="service-card"><h3>World-Class Equipment</h3><p>Best-in-class gear from [Brand 1] and [Brand 2]...</p></div>
-            <div class="service-card"><h3>High-Energy Group Classes</h3><p>HIIT, Spin, Yoga, or our signature [Unique Class Name]...</p></div>
-            <div class="service-card"><h3>Expert Coaching & Training</h3><p>Unlock your potential with our certified [Certification] coaches...</p></div>
-        </div>
-    </section>
+<script>
+function setLang(lang) {
+  document.body.className = lang === 'ge' ? 'ge' : '';
+  document.getElementById('btn-en').className = 'lang-btn' + (lang === 'en' ? ' active' : '');
+  document.getElementById('btn-ge').className = 'lang-btn' + (lang === 'ge' ? ' active' : '');
+  localStorage.setItem('lang', lang);
+}
 
-    <section id="pricing-table" class="container dark-bg">
-        <h2>Simple Plans. Serious Results.</h2>
-        <p class="intro-text">No hidden fees, no complicated contracts. Just choose the plan that fits your life.</p>
-        <div class="pricing-cards-grid">
-            
-            <div class="pricing-card">
-                <h3>Commitment-Free Pass</h3>
-                <div class="price">$X<span>/day</span></div>
-                <ul><li>Full access for 24 hours</li><li>Free parking</li></ul>
-                <a href="/signup/daypass" class="btn btn-secondary">GET ACCESS</a>
-            </div>
+function submitForm() {
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  if (!name || !phone) {
+    alert(document.body.classList.contains('ge') ? 'გთხოვთ შეავსოთ სახელი და ტელეფონი' : 'Please fill in your name and phone number');
+    return;
+  }
+  document.getElementById('form-content').style.display = 'none';
+  document.getElementById('success-msg').style.display = 'block';
+}
 
-            <div class="pricing-card highlighted">
-                <h3>The Progress Plan</h3>
-                <span class="badge">MOST POPULAR</span>
-                <div class="price">$Y<span>/month</span></div>
-                <ul><li>Unlimited 24/7 Access</li><li>Cancel anytime after 30 days</li></ul>
-                <a href="/signup/monthly" class="btn btn-primary">LOCK IN YOUR RATE</a>
-            </div>
+const saved = localStorage.getItem('lang');
+if (saved) setLang(saved);
 
-            <div class="pricing-card">
-                <h3>The Dedication Plan</h3>
-                <div class="price">$Z<span>/year</span></div>
-                <ul><li>Save $A vs. monthly</li><li>Free PT Session included</li></ul>
-                <a href="/signup/annual" class="btn btn-secondary">SAVE NOW</a>
-            </div>
-
-        </div>
-    </section>
-
-    <footer>
-        <div class="contact-info">
-            </div>
-        <div class="social-links">
-            </div>
-    </footer>
-
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth' });
+  });
+});
+</script>
 </body>
 </html>
