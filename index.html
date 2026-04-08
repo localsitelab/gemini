@@ -3,844 +3,569 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BookMore — Airbnb Listing Optimization Tbilisi</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<title>BookMore — Airbnb Optimization Tbilisi</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --black: #0a0a0a;
-    --white: #f5f2ec;
-    --accent: #e8440a;
-    --accent2: #f5a623;
-    --gray: #1a1a1a;
-    --gray2: #2a2a2a;
-    --text-muted: #888;
-    --font-display: 'Syne', sans-serif;
-    --font-body: 'DM Sans', sans-serif;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    background: var(--black);
-    color: var(--white);
-    font-family: var(--font-body);
-    font-size: 16px;
-    line-height: 1.6;
-    overflow-x: hidden;
-  }
-
-  .lang-ge { display: none; }
-  body.ge .lang-en { display: none; }
-  body.ge .lang-ge { display: block; }
-  body.ge span.lang-ge { display: inline; }
-  body.ge span.lang-en { display: none; }
-  span.lang-ge { display: none; }
-
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 1.2rem 2rem;
-    background: rgba(10,10,10,0.85);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-
-  .logo {
-    font-family: var(--font-display);
-    font-weight: 800;
-    font-size: 1.3rem;
-    letter-spacing: -0.03em;
-    color: var(--white);
-    text-decoration: none;
-  }
-
-  .logo span { color: var(--accent); }
-
-  .nav-right { display: flex; align-items: center; gap: 1rem; }
-
-  .lang-toggle {
-    background: var(--gray2);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 100px;
-    display: flex;
-    overflow: hidden;
-  }
-
-  .lang-btn {
-    padding: 0.35rem 0.9rem;
-    font-family: var(--font-body);
-    font-size: 0.8rem;
-    font-weight: 500;
-    cursor: pointer;
-    border: none;
-    background: transparent;
-    color: var(--text-muted);
-    transition: all 0.2s;
-  }
-
-  .lang-btn.active {
-    background: var(--accent);
-    color: white;
-  }
-
-  .nav-cta {
-    background: var(--accent);
-    color: white;
-    padding: 0.5rem 1.2rem;
-    border-radius: 100px;
-    font-size: 0.875rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: opacity 0.2s;
-  }
-
-  .nav-cta:hover { opacity: 0.85; }
-
-  section { padding: 6rem 2rem; max-width: 1100px; margin: 0 auto; }
-
-  .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: 8rem;
-    max-width: 100%;
-    padding-left: 6vw;
-    padding-right: 6vw;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -200px; right: -200px;
-    width: 600px; height: 600px;
-    background: radial-gradient(circle, rgba(232,68,10,0.15) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: rgba(232,68,10,0.12);
-    border: 1px solid rgba(232,68,10,0.3);
-    border-radius: 100px;
-    padding: 0.4rem 1rem;
-    font-size: 0.8rem;
-    font-weight: 500;
-    color: var(--accent2);
-    margin-bottom: 2rem;
-    width: fit-content;
-  }
-
-  .hero-tag::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.8); }
-  }
-
-  h1 {
-    font-family: var(--font-display);
-    font-size: clamp(3rem, 8vw, 7rem);
-    font-weight: 800;
-    line-height: 0.95;
-    letter-spacing: -0.04em;
-    margin-bottom: 1.5rem;
-  }
-
-  h1 em {
-    font-style: normal;
-    color: var(--accent);
-  }
-
-  .hero-sub {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-    color: #aaa;
-    max-width: 540px;
-    margin-bottom: 2.5rem;
-    font-weight: 300;
-    line-height: 1.7;
-  }
-
-  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-  .btn-primary {
-    background: var(--accent);
-    color: white;
-    padding: 0.9rem 2rem;
-    border-radius: 100px;
-    font-size: 1rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: all 0.2s;
-    border: none;
-    cursor: pointer;
-  }
-
-  .btn-primary:hover { background: #d03a06; transform: translateY(-1px); }
-
-  .btn-secondary {
-    background: transparent;
-    color: var(--white);
-    padding: 0.9rem 2rem;
-    border-radius: 100px;
-    font-size: 1rem;
-    font-weight: 500;
-    text-decoration: none;
-    border: 1px solid rgba(255,255,255,0.15);
-    transition: all 0.2s;
-  }
-
-  .btn-secondary:hover { border-color: rgba(255,255,255,0.4); }
-
-  .hero-stats {
-    display: flex;
-    gap: 2.5rem;
-    margin-top: 4rem;
-    flex-wrap: wrap;
-  }
-
-  .stat-item { }
-  .stat-num {
-    font-family: var(--font-display);
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--white);
-    line-height: 1;
-  }
-
-  .stat-num span { color: var(--accent); }
-  .stat-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem; }
-
-  .divider {
-    border: none;
-    height: 1px;
-    background: rgba(255,255,255,0.06);
-    margin: 0 2rem;
-  }
-
-  h2 {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 700;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
-    margin-bottom: 1rem;
-  }
-
-  .section-label {
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 1rem;
-  }
-
-  .problems-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1px;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 16px;
-    overflow: hidden;
-    margin-top: 3rem;
-  }
-
-  .problem-card {
-    background: var(--black);
-    padding: 2rem;
-    transition: background 0.2s;
-  }
-
-  .problem-card:hover { background: var(--gray); }
-
-  .problem-icon {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .problem-card h3 {
-    font-family: var(--font-display);
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--white);
-  }
-
-  .problem-card p {
-    font-size: 0.875rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-  }
-
-  .process-list {
-    margin-top: 3rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .process-item {
-    display: grid;
-    grid-template-columns: 60px 1fr;
-    gap: 1.5rem;
-    padding: 2rem 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-    position: relative;
-  }
-
-  .process-item:last-child { border-bottom: none; }
-
-  .process-num {
-    font-family: var(--font-display);
-    font-size: 3rem;
-    font-weight: 800;
-    color: rgba(255,255,255,0.08);
-    line-height: 1;
-    padding-top: 0.2rem;
-  }
-
-  .process-content h3 {
-    font-family: var(--font-display);
-    font-size: 1.2rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-  }
-
-  .process-content p {
-    font-size: 0.9rem;
-    color: #aaa;
-    max-width: 500px;
-  }
-
-  .case-study {
-    background: var(--gray);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 20px;
-    padding: 3rem;
-    margin-top: 3rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .case-study::before {
-    content: '"';
-    position: absolute;
-    top: -1rem; left: 1.5rem;
-    font-family: var(--font-display);
-    font-size: 8rem;
-    font-weight: 800;
-    color: rgba(232,68,10,0.15);
-    line-height: 1;
-    pointer-events: none;
-  }
-
-  .case-metrics {
-    display: flex;
-    gap: 2rem;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-  }
-
-  .case-metric {
-    background: rgba(232,68,10,0.1);
-    border: 1px solid rgba(232,68,10,0.2);
-    border-radius: 12px;
-    padding: 1rem 1.5rem;
-    text-align: center;
-  }
-
-  .case-metric-num {
-    font-family: var(--font-display);
-    font-size: 2rem;
-    font-weight: 800;
-    color: var(--accent);
-  }
-
-  .case-metric-label {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    margin-top: 0.2rem;
-  }
-
-  .pricing-box {
-    background: var(--gray);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 20px;
-    padding: 3rem;
-    margin-top: 3rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    align-items: center;
-  }
-
-  @media (max-width: 600px) {
-    .pricing-box { grid-template-columns: 1fr; gap: 2rem; }
-  }
-
-  .price-big {
-    font-family: var(--font-display);
-    font-size: 5rem;
-    font-weight: 800;
-    color: var(--accent);
-    line-height: 1;
-  }
-
-  .price-label {
-    font-size: 1rem;
-    color: var(--text-muted);
-    margin-top: 0.5rem;
-  }
-
-  .price-features {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .price-features li {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    font-size: 0.9rem;
-    color: #ccc;
-  }
-
-  .price-features li::before {
-    content: '→';
-    color: var(--accent);
-    flex-shrink: 0;
-    margin-top: 0.05rem;
-  }
-
-  .booking-section {
-    max-width: 700px;
-    margin: 0 auto;
-    text-align: center;
-    padding: 6rem 2rem;
-  }
-
-  .booking-form {
-    background: var(--gray);
-    border: 1px solid rgba(255,255,255,0.08);
-    border-radius: 20px;
-    padding: 2.5rem;
-    margin-top: 2.5rem;
-    text-align: left;
-  }
-
-  .form-group {
-    margin-bottom: 1.25rem;
-  }
-
-  label {
-    display: block;
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    margin-bottom: 0.4rem;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-  }
-
-  input, textarea, select {
-    width: 100%;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 10px;
-    padding: 0.8rem 1rem;
-    color: var(--white);
-    font-family: var(--font-body);
-    font-size: 0.95rem;
-    outline: none;
-    transition: border-color 0.2s;
-    appearance: none;
-  }
-
-  input:focus, textarea:focus, select:focus {
-    border-color: var(--accent);
-  }
-
-  textarea { resize: vertical; min-height: 100px; }
-
-  select option { background: #1a1a1a; }
-
-  .submit-btn {
-    width: 100%;
-    background: var(--accent);
-    color: white;
-    padding: 1rem;
-    border-radius: 10px;
-    font-size: 1rem;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    font-family: var(--font-display);
-    letter-spacing: 0.02em;
-    transition: all 0.2s;
-    margin-top: 0.5rem;
-  }
-
-  .submit-btn:hover { background: #d03a06; }
-
-  .success-msg {
-    display: none;
-    text-align: center;
-    padding: 2rem;
-  }
-
-  .success-msg h3 {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    color: var(--accent);
-    margin-bottom: 0.5rem;
-  }
-
-  footer {
-    border-top: 1px solid rgba(255,255,255,0.06);
-    padding: 2rem;
-    text-align: center;
-    font-size: 0.8rem;
-    color: var(--text-muted);
-  }
-
-  @media (max-width: 768px) {
-    nav { padding: 1rem; }
-    .nav-cta { display: none; }
-    section { padding: 4rem 1.25rem; }
-    .hero { padding: 7rem 1.25rem 4rem; }
-    .hero-stats { gap: 1.5rem; }
-  }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080808;
+  --surface:#111;
+  --surface2:#181818;
+  --border:rgba(255,255,255,0.07);
+  --accent:#e8440a;
+  --accent2:#ff6b35;
+  --green:#22c55e;
+  --white:#f0ece4;
+  --muted:#666;
+  --muted2:#999;
+  --font-d:'Syne',sans-serif;
+  --font-b:'Outfit',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:var(--font-b);font-size:16px;line-height:1.6;overflow-x:hidden;cursor:none}
+
+/* CURSOR */
+.cursor{position:fixed;width:10px;height:10px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform 0.1s,width 0.3s,height 0.3s,background 0.3s;mix-blend-mode:normal}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(232,68,10,0.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform 0.15s ease-out,width 0.3s,height 0.3s,border-color 0.3s}
+body:hover .cursor{opacity:1}
+
+/* NOISE OVERLAY */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:1;opacity:0.4}
+
+/* LANG */
+.ge .lang-en{display:none!important}
+.lang-ge{display:none}
+.ge .lang-ge{display:block}
+.ge span.lang-ge{display:inline}
+.ge span.lang-en{display:none}
+span.lang-ge{display:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;transition:background 0.4s,backdrop-filter 0.4s,border-color 0.4s;border-bottom:1px solid transparent}
+nav.scrolled{background:rgba(8,8,8,0.9);backdrop-filter:blur(20px);border-color:var(--border)}
+.logo{font-family:var(--font-d);font-weight:800;font-size:1.4rem;letter-spacing:-0.04em;text-decoration:none;color:var(--white)}
+.logo em{font-style:normal;color:var(--accent)}
+.nav-r{display:flex;align-items:center;gap:0.75rem}
+.lang-toggle{display:flex;background:var(--surface2);border:1px solid var(--border);border-radius:100px;overflow:hidden}
+.lb{padding:0.3rem 0.8rem;font-family:var(--font-b);font-size:0.75rem;font-weight:500;border:none;background:transparent;color:var(--muted);cursor:pointer;transition:all 0.2s}
+.lb.active{background:var(--accent);color:#fff}
+.call-btn{display:inline-flex;align-items:center;gap:0.5rem;background:var(--green);color:#fff;padding:0.45rem 1.1rem;border-radius:100px;font-size:0.8rem;font-weight:500;text-decoration:none;position:relative;overflow:hidden}
+.call-btn::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,0.2);transform:translateX(-100%);transition:transform 0.3s}
+.call-btn:hover::before{transform:translateX(0)}
+.cdot{width:6px;height:6px;border-radius:50%;background:#fff;animation:cdot 1.5s infinite}
+@keyframes cdot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(0.6);opacity:0.5}}
+.book-btn{background:var(--accent);color:#fff;padding:0.45rem 1.1rem;border-radius:100px;font-size:0.8rem;font-weight:500;text-decoration:none;transition:background 0.2s}
+.book-btn:hover{background:var(--accent2)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:9rem 6vw 5rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(80px);animation:orb 8s ease-in-out infinite alternate}
+.orb1{width:500px;height:500px;background:rgba(232,68,10,0.12);top:-100px;right:-100px;animation-delay:0s}
+.orb2{width:300px;height:300px;background:rgba(255,107,53,0.06);bottom:100px;left:-50px;animation-delay:3s}
+@keyframes orb{0%{transform:translate(0,0) scale(1)}100%{transform:translate(30px,20px) scale(1.1)}}
+
+/* GRID LINES */
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 0%,transparent 100%)}
+
+.htag{display:inline-flex;align-items:center;gap:0.5rem;border:1px solid rgba(232,68,10,0.25);background:rgba(232,68,10,0.06);border-radius:100px;padding:0.35rem 1rem;font-size:0.75rem;color:#ff9066;margin-bottom:1.8rem;width:fit-content;opacity:0;transform:translateY(20px);animation:fadeup 0.8s 0.2s forwards}
+.htag-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);animation:cdot 2s infinite}
+
+h1{font-family:var(--font-d);font-size:clamp(3.5rem,9vw,8rem);font-weight:800;line-height:0.92;letter-spacing:-0.05em;opacity:0;transform:translateY(30px);animation:fadeup 0.9s 0.4s forwards}
+h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hsub{font-size:clamp(1rem,1.8vw,1.2rem);color:var(--muted2);max-width:500px;margin:1.5rem 0 2.5rem;font-weight:300;line-height:1.75;opacity:0;transform:translateY(20px);animation:fadeup 0.9s 0.6s forwards}
+.hbtns{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;transform:translateY(20px);animation:fadeup 0.9s 0.8s forwards}
+.hbtn-primary{background:var(--accent);color:#fff;padding:0.85rem 2rem;border-radius:100px;font-size:1rem;font-weight:500;text-decoration:none;position:relative;overflow:hidden;transition:transform 0.2s}
+.hbtn-primary::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);transform:translateX(-100%);transition:transform 0.5s}
+.hbtn-primary:hover{transform:translateY(-2px)}
+.hbtn-primary:hover::after{transform:translateX(100%)}
+.hbtn-call{display:inline-flex;align-items:center;gap:0.6rem;background:rgba(34,197,94,0.12);border:1px solid rgba(34,197,94,0.3);color:var(--green);padding:0.85rem 2rem;border-radius:100px;font-size:1rem;font-weight:500;text-decoration:none;transition:all 0.2s;position:relative;overflow:hidden}
+.hbtn-call:hover{background:rgba(34,197,94,0.2);transform:translateY(-2px)}
+.hbtn-ghost{background:transparent;color:var(--white);padding:0.85rem 2rem;border-radius:100px;font-size:1rem;font-weight:400;text-decoration:none;border:1px solid var(--border);transition:all 0.2s}
+.hbtn-ghost:hover{border-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.04)}
+
+.hstats{display:flex;gap:3rem;margin-top:4.5rem;flex-wrap:wrap;opacity:0;transform:translateY(20px);animation:fadeup 0.9s 1s forwards;padding-top:3rem;border-top:1px solid var(--border)}
+.hstat-num{font-family:var(--font-d);font-size:2.8rem;font-weight:800;line-height:1;color:var(--white)}
+.hstat-num em{font-style:normal;color:var(--accent)}
+.hstat-label{font-size:0.75rem;color:var(--muted);margin-top:0.3rem;letter-spacing:0.02em}
+
+@keyframes fadeup{to{opacity:1;transform:translateY(0)}}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity 0.7s ease,transform 0.7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+.reveal-delay-5{transition-delay:0.5s}
+.reveal-delay-6{transition-delay:0.6s}
+
+/* SECTIONS */
+.section{padding:7rem 6vw;max-width:1200px;margin:0 auto}
+.slabel{font-size:0.7rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem}
+h2{font-family:var(--font-d);font-size:clamp(2rem,4.5vw,4rem);font-weight:700;letter-spacing:-0.04em;line-height:1.05;margin-bottom:1rem}
+.sdesc{color:var(--muted2);font-size:1.05rem;max-width:500px;font-weight:300;line-height:1.7;margin-bottom:3rem}
+hr.div{border:none;height:1px;background:var(--border);margin:0 6vw}
+
+/* PROBLEMS GRID */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:20px;overflow:hidden;margin-top:3.5rem}
+@media(max-width:768px){.pgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.pgrid{grid-template-columns:1fr}}
+.pcard{background:var(--bg);padding:2rem;transition:background 0.3s,transform 0.2s;position:relative;overflow:hidden}
+.pcard::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(232,68,10,0.05),transparent);opacity:0;transition:opacity 0.3s}
+.pcard:hover{background:var(--surface)}
+.pcard:hover::before{opacity:1}
+.pcard:hover .picon{transform:scale(1.1) rotate(-5deg)}
+.picon{font-size:1.6rem;margin-bottom:1rem;display:block;transition:transform 0.3s}
+.pcard h3{font-family:var(--font-d);font-size:0.95rem;font-weight:600;margin-bottom:0.5rem;color:var(--white)}
+.pcard p{font-size:0.825rem;color:var(--muted);line-height:1.6}
+
+/* PROCESS */
+.plist{margin-top:3rem}
+.pitem{display:grid;grid-template-columns:80px 1fr;gap:2rem;padding:2.5rem 0;border-bottom:1px solid var(--border);position:relative;transition:padding 0.3s}
+.pitem:last-child{border-bottom:none}
+.pitem:hover{padding-left:1rem}
+.pitem::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent);transform:scaleY(0);transform-origin:top;transition:transform 0.4s}
+.pitem:hover::before{transform:scaleY(1)}
+.pnum{font-family:var(--font-d);font-size:3.5rem;font-weight:800;color:rgba(255,255,255,0.05);line-height:1;padding-top:0.15rem;transition:color 0.3s}
+.pitem:hover .pnum{color:rgba(232,68,10,0.15)}
+.pcontent h3{font-family:var(--font-d);font-size:1.15rem;font-weight:600;margin-bottom:0.5rem;transition:color 0.2s}
+.pitem:hover .pcontent h3{color:var(--accent2)}
+.pcontent p{font-size:0.9rem;color:var(--muted2);max-width:480px;line-height:1.7}
+
+/* CASE STUDY */
+.case{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:3.5rem;margin-top:3.5rem;position:relative;overflow:hidden}
+.case::after{content:'';position:absolute;top:0;right:0;width:300px;height:300px;background:radial-gradient(circle,rgba(232,68,10,0.08),transparent 70%);pointer-events:none}
+.case-q{font-family:var(--font-d);font-size:6rem;font-weight:800;color:rgba(232,68,10,0.08);line-height:1;position:absolute;top:-0.5rem;left:1.5rem;pointer-events:none}
+.case-text{font-size:1.1rem;color:var(--muted2);max-width:580px;line-height:1.85;position:relative;z-index:1}
+.case-metrics{display:flex;gap:1.5rem;margin-top:2.5rem;flex-wrap:wrap}
+.cmetric{background:rgba(232,68,10,0.07);border:1px solid rgba(232,68,10,0.15);border-radius:14px;padding:1.25rem 1.75rem;text-align:center;transition:transform 0.2s,background 0.2s}
+.cmetric:hover{transform:translateY(-3px);background:rgba(232,68,10,0.12)}
+.cmetric-n{font-family:var(--font-d);font-size:2rem;font-weight:800;color:var(--accent)}
+.cmetric-l{font-size:0.72rem;color:var(--muted);margin-top:0.2rem}
+
+/* PRICING */
+.pbox{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:3.5rem;margin-top:3.5rem;display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center;position:relative;overflow:hidden}
+.pbox::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(232,68,10,0.03),transparent);pointer-events:none}
+@media(max-width:640px){.pbox{grid-template-columns:1fr;gap:2rem}}
+.price-big{font-family:var(--font-d);font-size:5.5rem;font-weight:800;color:var(--accent);line-height:1;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.price-sub{font-size:0.9rem;color:var(--muted);margin-top:0.5rem;line-height:1.6}
+.price-ex{margin-top:1.5rem;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;font-size:0.825rem;color:var(--muted2);line-height:1.7}
+.price-ex strong{color:var(--white);font-weight:500}
+.pfeatures{list-style:none;display:flex;flex-direction:column;gap:0.85rem}
+.pfeatures li{display:flex;align-items:flex-start;gap:0.75rem;font-size:0.875rem;color:var(--muted2)}
+.pfeatures li::before{content:'→';color:var(--accent);flex-shrink:0;font-weight:600}
+
+/* BOOKING */
+.bsec{max-width:680px;margin:0 auto;text-align:center;padding:7rem 2rem}
+.bform{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:2.5rem;margin-top:2.5rem;text-align:left}
+.fg{margin-bottom:1.25rem}
+label{display:block;font-size:0.75rem;color:var(--muted);margin-bottom:0.4rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase}
+input,textarea,select{width:100%;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;padding:0.85rem 1rem;color:var(--white);font-family:var(--font-b);font-size:0.9rem;outline:none;transition:border-color 0.2s,background 0.2s;-webkit-appearance:none}
+input:focus,textarea:focus,select:focus{border-color:rgba(232,68,10,0.5);background:rgba(232,68,10,0.03)}
+input::placeholder,textarea::placeholder{color:var(--muted)}
+textarea{resize:vertical;min-height:90px}
+select option{background:#111}
+.sbtn{width:100%;background:var(--accent);color:#fff;padding:1rem;border-radius:12px;font-size:1rem;font-weight:600;border:none;cursor:pointer;font-family:var(--font-d);letter-spacing:0.02em;transition:all 0.2s;margin-top:0.5rem;position:relative;overflow:hidden}
+.sbtn::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);transform:translateX(-100%);transition:transform 0.5s}
+.sbtn:hover{background:var(--accent2);transform:translateY(-1px)}
+.sbtn:hover::after{transform:translateX(100%)}
+.smsg{display:none;text-align:center;padding:2.5rem 1rem}
+.smsg-icon{font-size:3rem;margin-bottom:1rem}
+.smsg h3{font-family:var(--font-d);font-size:1.5rem;color:var(--accent);margin-bottom:0.5rem}
+.smsg p{color:var(--muted);font-size:0.9rem}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2.5rem 6vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:gap;gap:1rem}
+.flogo{font-family:var(--font-d);font-weight:800;font-size:1.1rem;letter-spacing:-0.03em;color:var(--white);text-decoration:none}
+.flogo em{font-style:normal;color:var(--accent)}
+.flinks{display:flex;gap:1.5rem;font-size:0.85rem;color:var(--muted)}
+.flinks a{color:var(--accent);text-decoration:none;transition:opacity 0.2s}
+.flinks a:hover{opacity:0.7}
+
+/* MOBILE */
+@media(max-width:768px){
+  nav{padding:1rem 1.25rem}
+  .book-btn{display:none}
+  .section{padding:4.5rem 1.25rem}
+  .hero{padding:8rem 1.25rem 4rem}
+  .hstats{gap:2rem}
+  .bsec{padding:4.5rem 1.25rem}
+  footer{flex-direction:column;text-align:center}
+}
 </style>
 </head>
 <body>
 
-<nav>
-  <a href="#" class="logo">Book<span>More</span></a>
-  <div class="nav-right">
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<nav id="nav">
+  <a href="#" class="logo">Book<em>More</em></a>
+  <div class="nav-r">
     <div class="lang-toggle">
-      <button class="lang-btn active" onclick="setLang('en')" id="btn-en">EN</button>
-      <button class="lang-btn" onclick="setLang('ge')" id="btn-ge">GE</button>
+      <button class="lb active" onclick="setLang('en')" id="ben">EN</button>
+      <button class="lb" onclick="setLang('ge')" id="bge">GE</button>
     </div>
-    <a href="#book" class="nav-cta">
-      <span class="lang-en">Book a Session</span>
-      <span class="lang-ge">სესიის დაჯავშნა</span>
+    <a href="tel:+995551309680" class="call-btn">
+      <div class="cdot"></div>
+      <span class="lang-en">Call Now</span>
+      <span class="lang-ge">დარეკე</span>
+    </a>
+    <a href="#book" class="book-btn">
+      <span class="lang-en">Book Session</span>
+      <span class="lang-ge">სესია</span>
     </a>
   </div>
 </nav>
 
-<div class="hero">
-  <div class="hero-tag">
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-orb orb1"></div>
+    <div class="hero-orb orb2"></div>
+    <div class="hero-grid"></div>
+  </div>
+
+  <div class="htag">
+    <div class="htag-dot"></div>
     <span class="lang-en">Airbnb Optimization · Tbilisi, Georgia</span>
-    <span class="lang-ge">Airbnb ოპტიმიზაცია · თბილისი, საქართველო</span>
+    <span class="lang-ge">Airbnb ოპტიმიზაცია · თბილისი</span>
   </div>
 
   <h1 class="lang-en">More guests.<br>More <em>bookings.</em></h1>
   <h1 class="lang-ge">მეტი სტუმარი.<br>მეტი <em>ჯავშანი.</em></h1>
 
-  <p class="hero-sub lang-en">We optimize your Airbnb listing so more people find it, click it, and book it. Title, photos, pricing, description — everything that matters.</p>
-  <p class="hero-sub lang-ge">ვაუმჯობესებთ თქვენს Airbnb-ის განცხადებას, რომ მეტმა ადამიანმა იპოვოს, დააწკაპოს და დაჯავშნოს. სათაური, ფოტოები, ფასი, აღწერა — ყველაფერი, რაც მნიშვნელოვანია.</p>
+  <p class="hsub lang-en">We optimize your Airbnb listing so more people find it, click it, and book it. Title, photos, pricing, description — everything that matters.</p>
+  <p class="hsub lang-ge">ვაუმჯობესებთ თქვენს Airbnb-ის განცხადებას. სათაური, ფოტოები, ფასი, აღწერა — ყველაფერი, რაც მნიშვნელოვანია.</p>
 
-  <div class="hero-actions">
-    <a href="#book" class="btn-primary lang-en">Book Free Consultation</a>
-    <a href="#book" class="btn-primary lang-ge">უფასო კონსულტაციის დაჯავშნა</a>
-    <a href="#how" class="btn-secondary lang-en">See how it works</a>
-    <a href="#how" class="btn-secondary lang-ge">როგორ მუშაობს</a>
+  <div class="hbtns">
+    <a href="#book" class="hbtn-primary lang-en">Book Free Consultation</a>
+    <a href="#book" class="hbtn-primary lang-ge">უფასო კონსულტაცია</a>
+    <a href="tel:+995551309680" class="hbtn-call">
+      <div class="cdot"></div>
+      <span class="lang-en">Call Now</span>
+      <span class="lang-ge">დარეკე</span>
+    </a>
+    <a href="#how" class="hbtn-ghost lang-en">How it works ↓</a>
+    <a href="#how" class="hbtn-ghost lang-ge">როგორ მუშაობს ↓</a>
   </div>
 
-  <div class="hero-stats">
-    <div class="stat-item">
-      <div class="stat-num">2<span>→</span>365</div>
-      <div class="stat-label lang-en">bookings in a year (real client)</div>
-      <div class="stat-label lang-ge">ჯავშანი წელიწადში (რეალური კლიენტი)</div>
+  <div class="hstats">
+    <div class="hstat">
+      <div class="hstat-num">2<em>→</em>365</div>
+      <div class="hstat-label lang-en">bookings / year (real client)</div>
+      <div class="hstat-label lang-ge">ჯავშანი წელიწადში</div>
     </div>
-    <div class="stat-item">
-      <div class="stat-num">15<span>%</span></div>
-      <div class="stat-label lang-en">commission only on results</div>
-      <div class="stat-label lang-ge">საკომისიო მხოლოდ შედეგზე</div>
+    <div class="hstat">
+      <div class="hstat-num">15<em>%</em></div>
+      <div class="hstat-label lang-en">commission on results only</div>
+      <div class="hstat-label lang-ge">საკომისიო მხოლოდ შედეგზე</div>
     </div>
-    <div class="stat-item">
-      <div class="stat-num">6<span>mo</span></div>
-      <div class="stat-label lang-en">partnership period</div>
-      <div class="stat-label lang-ge">თანამშრომლობის პერიოდი</div>
+    <div class="hstat">
+      <div class="hstat-num">6<em>mo</em></div>
+      <div class="hstat-label lang-en">partnership period</div>
+      <div class="hstat-label lang-ge">თანამშრომლობის პერიოდი</div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- PROBLEMS -->
+<div class="section reveal">
+  <div class="slabel lang-en">The Problem</div>
+  <div class="slabel lang-ge">პრობლემა</div>
+  <h2 class="lang-en">Why your listing<br>isn't getting booked</h2>
+  <h2 class="lang-ge">რატომ არ ჯავშნიან<br>თქვენს განცხადებას</h2>
+
+  <div class="pgrid">
+    <div class="pcard reveal reveal-delay-1">
+      <span class="picon">📸</span>
+      <h3 class="lang-en">Wrong cover photo</h3>
+      <h3 class="lang-ge">არასწორი მთავარი ფოტო</h3>
+      <p class="lang-en">Your first photo determines whether guests click or scroll past. Most hosts get this wrong.</p>
+      <p class="lang-ge">პირველი ფოტო განსაზღვრავს, დააწკაპოს თუ გადაახვიოს სტუმარი.</p>
+    </div>
+    <div class="pcard reveal reveal-delay-2">
+      <span class="picon">🔍</span>
+      <h3 class="lang-en">No keywords in title</h3>
+      <h3 class="lang-ge">კეივორდები სათაურში არ არის</h3>
+      <p class="lang-en">If your title doesn't match what guests search, Airbnb won't show your listing. Simple as that.</p>
+      <p class="lang-ge">თუ სათაური არ ემთხვევა ძიებას, Airbnb არ გაჩვენებს შენს განცხადებას.</p>
+    </div>
+    <div class="pcard reveal reveal-delay-3">
+      <span class="picon">💰</span>
+      <h3 class="lang-en">Wrong pricing</h3>
+      <h3 class="lang-ge">არასწორი ფასი</h3>
+      <p class="lang-en">Too high kills bookings. Too low kills revenue. Most hosts are leaving money on the table.</p>
+      <p class="lang-ge">ძალიან მაღალი — კლავს ჯავშნებს. ძალიან დაბალი — კლავს შემოსავალს.</p>
+    </div>
+    <div class="pcard reveal reveal-delay-4">
+      <span class="picon">📝</span>
+      <h3 class="lang-en">Generic description</h3>
+      <h3 class="lang-ge">ზოგადი აღწერა</h3>
+      <p class="lang-en">"Nice apartment in good location" tells guests nothing. It should make them book immediately.</p>
+      <p class="lang-ge">"კარგ ადგილას ბინა" სტუმრებს არაფერს ეუბნება.</p>
+    </div>
+    <div class="pcard reveal reveal-delay-5">
+      <span class="picon">⚙️</span>
+      <h3 class="lang-en">Bad settings</h3>
+      <h3 class="lang-ge">არასწორი პარამეტრები</h3>
+      <p class="lang-en">Instant Book off, wrong minimum stays, missing amenities — quietly killing your ranking.</p>
+      <p class="lang-ge">Instant Book გამორთული, არასწორი მინ. ღამეები — ჩუმად კლავს რეიტინგს.</p>
+    </div>
+    <div class="pcard reveal reveal-delay-6">
+      <span class="picon">📉</span>
+      <h3 class="lang-en">Algorithm changes</h3>
+      <h3 class="lang-ge">ალგორითმის ცვლილებები</h3>
+      <p class="lang-en">Airbnb updates its algorithm constantly. What worked last year may hurt you today.</p>
+      <p class="lang-ge">Airbnb მუდმივად ცვლის ალგორითმს. გასული წელი ≠ დღეს.</p>
     </div>
   </div>
 </div>
 
-<hr class="divider">
+<hr class="div">
 
-<section>
-  <div class="section-label lang-en">The Problem</div>
-  <div class="section-label lang-ge">პრობლემა</div>
-  <h2 class="lang-en">Why your listing<br>isn't getting booked</h2>
-  <h2 class="lang-ge">რატომ არ ჯავშნიან<br>თქვენს განცხადებას</h2>
+<!-- HOW -->
+<div class="section" id="how">
+  <div class="slabel lang-en reveal">How It Works</div>
+  <div class="slabel lang-ge reveal">როგორ მუშაობს</div>
+  <h2 class="lang-en reveal">Simple. Fast. Results.</h2>
+  <h2 class="lang-ge reveal">მარტივი. სწრაფი. შედეგი.</h2>
 
-  <div class="problems-grid">
-    <div class="problem-card">
-      <div class="problem-icon">📸</div>
-      <h3 class="lang-en">Wrong cover photo</h3>
-      <h3 class="lang-ge">არასწორი მთავარი ფოტო</h3>
-      <p class="lang-en">Your first photo determines whether guests click or scroll past. Most hosts choose the wrong one.</p>
-      <p class="lang-ge">პირველი ფოტო განსაზღვრავს, დააწკაპოს თუ გადაახვიოს სტუმარი. უმეტეს შემთხვევაში ირჩევენ არასწორს.</p>
-    </div>
-    <div class="problem-card">
-      <div class="problem-icon">🔍</div>
-      <h3 class="lang-en">Title with no keywords</h3>
-      <h3 class="lang-ge">სათაური კეივორდების გარეშე</h3>
-      <p class="lang-en">If your title doesn't match what guests search, Airbnb won't show your listing. Simple as that.</p>
-      <p class="lang-ge">თუ სათაური არ ემთხვევა სტუმრების ძიებას, Airbnb არ გაჩვენებს თქვენს განცხადებას.</p>
-    </div>
-    <div class="problem-card">
-      <div class="problem-icon">💰</div>
-      <h3 class="lang-en">Wrong pricing</h3>
-      <h3 class="lang-ge">არასწორი ფასი</h3>
-      <p class="lang-en">Too high kills bookings. Too low kills revenue. Most hosts are leaving money on the table.</p>
-      <p class="lang-ge">ძალიან მაღალი ფასი კლავს ჯავშნებს. ძალიან დაბალი — შემოსავალს. უმეტეს მასპინძელს ფული ეკარგება.</p>
-    </div>
-    <div class="problem-card">
-      <div class="problem-icon">📝</div>
-      <h3 class="lang-en">Generic description</h3>
-      <h3 class="lang-ge">ზოგადი აღწერა</h3>
-      <p class="lang-en">"Nice apartment in good location" tells guests nothing. Your description should make them want to book immediately.</p>
-      <p class="lang-ge">"კარგ ადგილას მდებარე ბინა" სტუმრებს არაფერს ეუბნება. აღწერა უნდა აიძულებდეს მყისიერ დაჯავშნას.</p>
-    </div>
-    <div class="problem-card">
-      <div class="problem-icon">⚙️</div>
-      <h3 class="lang-en">Bad settings</h3>
-      <h3 class="lang-ge">არასწორი პარამეტრები</h3>
-      <p class="lang-en">Instant Book off, wrong minimum stays, missing amenities — small settings that quietly kill your ranking.</p>
-      <p class="lang-ge">Instant Book გამორთული, არასწორი მინიმალური ღამეები — პატარა პარამეტრები, რომლებიც ჩუმად კლავს რეიტინგს.</p>
-    </div>
-    <div class="problem-card">
-      <div class="problem-icon">📉</div>
-      <h3 class="lang-en">Algorithm changes</h3>
-      <h3 class="lang-ge">ალგორითმის ცვლილებები</h3>
-      <p class="lang-en">Airbnb updates its algorithm constantly. What worked last year may hurt you today. You need someone watching.</p>
-      <p class="lang-ge">Airbnb მუდმივად ცვლის ალგორითმს. გასული წლის მეთოდები დღეს შეიძლება ზიანს გაყენებდეს.</p>
-    </div>
-  </div>
-</section>
-
-<hr class="divider">
-
-<section id="how">
-  <div class="section-label lang-en">How It Works</div>
-  <div class="section-label lang-ge">როგორ მუშაობს</div>
-  <h2 class="lang-en">Simple. Fast. Results.</h2>
-  <h2 class="lang-ge">მარტივი. სწრაფი. შედეგი.</h2>
-
-  <div class="process-list">
-    <div class="process-item">
-      <div class="process-num">01</div>
-      <div class="process-content">
+  <div class="plist">
+    <div class="pitem reveal">
+      <div class="pnum">01</div>
+      <div class="pcontent">
         <h3 class="lang-en">You reach out</h3>
         <h3 class="lang-ge">გვიკავშირდებით</h3>
-        <p class="lang-en">Fill the form below. We review your listing and get back to you within 24 hours with a free audit of what's wrong.</p>
-        <p class="lang-ge">შეავსეთ ქვემოთ მოცემული ფორმა. განვიხილავთ თქვენს განცხადებას და 24 საათში გამოგიგზავნით უფასო აუდიტს.</p>
+        <p class="lang-en">Fill the form or call. We review your listing and send you a free audit of exactly what's wrong within 24 hours.</p>
+        <p class="lang-ge">შეავსეთ ფორმა ან დარეკეთ. 24 საათში გამოგიგზავნით უფასო აუდიტს.</p>
       </div>
     </div>
-    <div class="process-item">
-      <div class="process-num">02</div>
-      <div class="process-content">
+    <div class="pitem reveal">
+      <div class="pnum">02</div>
+      <div class="pcontent">
         <h3 class="lang-en">We optimize everything</h3>
         <h3 class="lang-ge">ვაოპტიმიზებთ ყველაფერს</h3>
         <p class="lang-en">Title, description, photos, pricing, settings. We may visit your property to take better photos if needed.</p>
-        <p class="lang-ge">სათაური, აღწერა, ფოტოები, ფასი, პარამეტრები. საჭიროების შემთხვევაში ვახლით უკეთესი ფოტოების გადასაღებად.</p>
+        <p class="lang-ge">სათაური, აღწერა, ფოტოები, ფასი, პარამეტრები. საჭიროებისას ახლო მოვდივართ.</p>
       </div>
     </div>
-    <div class="process-item">
-      <div class="process-num">03</div>
-      <div class="process-content">
+    <div class="pitem reveal">
+      <div class="pnum">03</div>
+      <div class="pcontent">
         <h3 class="lang-en">Bookings increase</h3>
         <h3 class="lang-ge">ჯავშნები იზრდება</h3>
         <p class="lang-en">We monitor weekly and adjust as needed. You watch your calendar fill up.</p>
-        <p class="lang-ge">ყოველ კვირას ვაკვირდებით და საჭიროებისამებრ ვარეგულირებთ. თქვენ კი კალენდრის შევსებას უყურებთ.</p>
+        <p class="lang-ge">ყოველ კვირას ვაკვირდებით. თქვენ კი კალენდრის შევსებას უყურებთ.</p>
       </div>
     </div>
-    <div class="process-item">
-      <div class="process-num">04</div>
-      <div class="process-content">
-        <h3 class="lang-en">You pay only on results</h3>
+    <div class="pitem reveal">
+      <div class="pnum">04</div>
+      <div class="pcontent">
+        <h3 class="lang-en">Pay only on results</h3>
         <h3 class="lang-ge">იხდით მხოლოდ შედეგზე</h3>
-        <p class="lang-en">15% of booking revenue for 6 months. No bookings, no payment. After 6 months, entirely your choice to continue.</p>
-        <p class="lang-ge">ჯავშნის შემოსავლის 15% 6 თვის განმავლობაში. ჯავშნები არ გაიზარდა — არაფერს გადაიხდით. 6 თვის შემდეგ — თქვენი გადაწყვეტილება.</p>
+        <p class="lang-en">15% of booking revenue for 6 months. No bookings = no payment. After 6 months, entirely your choice.</p>
+        <p class="lang-ge">ჯავშნის შემოსავლის 15% — 6 თვე. ჯავშნები არ გაიზარდა = არაფერს გადაიხდით.</p>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<hr class="divider">
+<hr class="div">
 
-<section>
-  <div class="section-label lang-en">Real Result</div>
-  <div class="section-label lang-ge">რეალური შედეგი</div>
+<!-- CASE STUDY -->
+<div class="section reveal">
+  <div class="slabel lang-en">Real Result</div>
+  <div class="slabel lang-ge">რეალური შედეგი</div>
   <h2 class="lang-en">From 2 bookings<br>to fully booked</h2>
   <h2 class="lang-ge">2 ჯავშნიდან<br>სრულ დაჯავშნამდე</h2>
 
-  <div class="case-study">
-    <p style="font-size: 1.1rem; color: #ccc; max-width: 600px; line-height: 1.8;" class="lang-en">A Tbilisi host had only 2 bookings in an entire year. After we optimized the title, photos, description and pricing — the calendar was fully booked for the next 12 months.</p>
-    <p style="font-size: 1.1rem; color: #ccc; max-width: 600px; line-height: 1.8;" class="lang-ge">თბილისელ მასპინძელს მთელი წლის განმავლობაში მხოლოდ 2 ჯავშანი ჰქონდა. სათაურის, ფოტოების, აღწერის და ფასის ოპტიმიზაციის შემდეგ კალენდარი შემდეგი 12 თვისთვის სრულად შეივსო.</p>
+  <div class="case">
+    <div class="case-q">"</div>
+    <p class="case-text lang-en">A Tbilisi host had only 2 bookings in an entire year. After we optimized the title, photos, description and pricing — the calendar was fully booked for the next 12 months.</p>
+    <p class="case-text lang-ge">თბილისელ მასპინძელს მთელი წლის განმავლობაში მხოლოდ 2 ჯავშანი ჰქონდა. სათაურის, ფოტოების, აღწერის და ფასის ოპტიმიზაციის შემდეგ კალენდარი 12 თვისთვის სრულად შეივსო.</p>
     <div class="case-metrics">
-      <div class="case-metric">
-        <div class="case-metric-num">2</div>
-        <div class="case-metric-label lang-en">bookings before</div>
-        <div class="case-metric-label lang-ge">ჯავშანი ადრე</div>
+      <div class="cmetric reveal reveal-delay-1">
+        <div class="cmetric-n">2</div>
+        <div class="cmetric-l lang-en">bookings before</div>
+        <div class="cmetric-l lang-ge">ჯავშანი ადრე</div>
       </div>
-      <div class="case-metric">
-        <div class="case-metric-num" style="color: #4ade80;">365</div>
-        <div class="case-metric-label lang-en">days booked after</div>
-        <div class="case-metric-label lang-ge">დღე დაჯავშნული შემდეგ</div>
+      <div class="cmetric reveal reveal-delay-2">
+        <div class="cmetric-n" style="color:#4ade80">365</div>
+        <div class="cmetric-l lang-en">days booked after</div>
+        <div class="cmetric-l lang-ge">დღე შემდეგ</div>
       </div>
-      <div class="case-metric">
-        <div class="case-metric-num">Tbilisi</div>
-        <div class="case-metric-label lang-en">location</div>
-        <div class="case-metric-label lang-ge">ლოკაცია</div>
+      <div class="cmetric reveal reveal-delay-3">
+        <div class="cmetric-n">Tbilisi</div>
+        <div class="cmetric-l lang-en">location</div>
+        <div class="cmetric-l lang-ge">ლოკაცია</div>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<hr class="divider">
+<hr class="div">
 
-<section>
-  <div class="section-label lang-en">Pricing</div>
-  <div class="section-label lang-ge">ფასი</div>
+<!-- PRICING -->
+<div class="section reveal">
+  <div class="slabel lang-en">Pricing</div>
+  <div class="slabel lang-ge">ფასი</div>
   <h2 class="lang-en">You only pay<br>when you earn</h2>
   <h2 class="lang-ge">იხდით მხოლოდ<br>მაშინ, როცა გამოიმუშავებთ</h2>
 
-  <div class="pricing-box">
+  <div class="pbox">
     <div>
       <div class="price-big">15%</div>
-      <div class="price-label lang-en">of monthly booking revenue · 6 months</div>
-      <div class="price-label lang-ge">ყოველთვიური ჯავშნის შემოსავლიდან · 6 თვე</div>
-      <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);" class="lang-en">Example: if you earn $500/month from bookings, you keep $425 and we take $75.</p>
-      <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);" class="lang-ge">მაგალითი: თუ ჯავშნებიდან $500 გამოიმუშავეთ, $425 თქვენი რჩება, $75-ს ვიღებთ ჩვენ.</p>
+      <div class="price-sub lang-en">of monthly booking revenue · 6 months</div>
+      <div class="price-sub lang-ge">ყოველთვიური ჯავშნის შემოსავლიდან · 6 თვე</div>
+      <div class="price-ex lang-en"><strong>Example:</strong> you earn $500/month from bookings → you keep <strong>$425</strong>, we take <strong>$75</strong>. Nothing more.</div>
+      <div class="price-ex lang-ge"><strong>მაგალითი:</strong> $500 გამოიმუშავეთ → <strong>$425</strong> თქვენი, <strong>$75</strong> ჩვენი. სხვა არაფერი.</div>
     </div>
-    <ul class="price-features lang-en">
+    <ul class="pfeatures lang-en">
       <li>Full listing audit and optimization</li>
-      <li>Title, description, photos rewrite</li>
+      <li>Title + full description rewrite</li>
+      <li>Photo reordering + on-site shoot if needed</li>
       <li>Pricing strategy setup</li>
       <li>Settings and amenities audit</li>
-      <li>On-site photography if needed</li>
       <li>Weekly monitoring for 6 months</li>
       <li>Algorithm update tracking</li>
       <li>No bookings = no payment</li>
     </ul>
-    <ul class="price-features lang-ge">
+    <ul class="pfeatures lang-ge">
       <li>სრული აუდიტი და ოპტიმიზაცია</li>
-      <li>სათაური, აღწერა, ფოტოების გადაწერა</li>
-      <li>ფასის სტრატეგიის შემუშავება</li>
+      <li>სათაური + სრული აღწერის გადაწერა</li>
+      <li>ფოტოების გადალაგება + გადაღება საჭიროებისას</li>
+      <li>ფასის სტრატეგია</li>
       <li>პარამეტრების და სერვისების აუდიტი</li>
-      <li>ადგილზე ფოტოგრაფია საჭიროებისას</li>
       <li>ყოველკვირეული მონიტორინგი 6 თვე</li>
       <li>ალგორითმის ცვლილებების თვალყური</li>
       <li>ჯავშნები არ გაიზარდა = არ გადაიხდით</li>
     </ul>
   </div>
-</section>
+</div>
 
-<hr class="divider">
+<hr class="div">
 
-<div class="booking-section" id="book">
-  <div class="section-label lang-en" style="text-align: center;">Book a Session</div>
-  <div class="section-label lang-ge" style="text-align: center;">სესიის დაჯავშნა</div>
-  <h2 class="lang-en">Ready to get<br>more bookings?</h2>
-  <h2 class="lang-ge">მზად ხართ მეტი<br>ჯავშნისთვის?</h2>
-  <p style="color: var(--text-muted); margin-top: 1rem;" class="lang-en">Fill this out and we'll send you a free audit of your listing within 24 hours.</p>
-  <p style="color: var(--text-muted); margin-top: 1rem;" class="lang-ge">შეავსეთ ფორმა და 24 საათში გამოგიგზავნით თქვენი განცხადების უფასო აუდიტს.</p>
+<!-- BOOKING -->
+<div class="bsec" id="book">
+  <div class="slabel lang-en reveal" style="text-align:center">Book a Session</div>
+  <div class="slabel lang-ge reveal" style="text-align:center">სესიის დაჯავშნა</div>
+  <h2 class="lang-en reveal">Ready to get<br>more bookings?</h2>
+  <h2 class="lang-ge reveal">მზად ხართ მეტი<br>ჯავშნისთვის?</h2>
+  <p style="color:var(--muted2);margin-top:1rem;font-weight:300" class="lang-en reveal">Fill this out and we'll send you a free audit of your listing within 24 hours.</p>
+  <p style="color:var(--muted2);margin-top:1rem;font-weight:300" class="lang-ge reveal">შეავსეთ ფორმა და 24 საათში გამოგიგზავნით თქვენი განცხადების უფასო აუდიტს.</p>
 
-  <div class="booking-form">
-    <div id="form-content">
-      <div class="form-group">
-        <label class="lang-en">Your name</label>
-        <label class="lang-ge">თქვენი სახელი</label>
-        <input type="text" id="name" placeholder="Nino / Giorgi">
-      </div>
-      <div class="form-group">
-        <label class="lang-en">Phone number (WhatsApp / Telegram)</label>
-        <label class="lang-ge">ტელეფონის ნომერი (WhatsApp / Telegram)</label>
-        <input type="tel" id="phone" placeholder="+995 5XX XXX XXX">
-      </div>
-      <div class="form-group">
-        <label class="lang-en">Your Airbnb listing URL (optional)</label>
-        <label class="lang-ge">თქვენი Airbnb-ის ბმული (არასავალდებულო)</label>
-        <input type="url" id="listing" placeholder="https://airbnb.com/rooms/...">
-      </div>
-      <div class="form-group">
-        <label class="lang-en">How many bookings do you get per month?</label>
-        <label class="lang-ge">რამდენი ჯავშანი გაქვთ თვეში?</label>
-        <select id="bookings">
-          <option value="" class="lang-en">Select...</option>
-          <option value="0-2" class="lang-en">0–2 (almost none)</option>
-          <option value="3-6" class="lang-en">3–6</option>
-          <option value="7-15" class="lang-en">7–15</option>
-          <option value="15+" class="lang-en">15+</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="lang-en">Anything else you want to say?</label>
-        <label class="lang-ge">სხვა რამე გინდათ დაამატოთ?</label>
-        <textarea id="message" placeholder="..."></textarea>
-      </div>
-      <button class="submit-btn lang-en" onclick="submitForm()">Send — get my free audit →</button>
-      <button class="submit-btn lang-ge" onclick="submitForm()">გაგზავნა — მინდა უფასო აუდიტი →</button>
+  <div class="bform reveal">
+    <div id="fc">
+      <form id="cf" action="https://formspree.io/f/xojpbonk" method="POST">
+        <input type="hidden" name="_subject" value="New BookMore inquiry!">
+        <div class="fg">
+          <label class="lang-en">Your name</label>
+          <label class="lang-ge">სახელი</label>
+          <input type="text" name="name" placeholder="Nino / Giorgi" required>
+        </div>
+        <div class="fg">
+          <label class="lang-en">Phone (WhatsApp / Telegram)</label>
+          <label class="lang-ge">ტელეფონი (WhatsApp / Telegram)</label>
+          <input type="tel" name="phone" placeholder="+995 5XX XXX XXX" required>
+        </div>
+        <div class="fg">
+          <label class="lang-en">Airbnb listing URL (optional)</label>
+          <label class="lang-ge">Airbnb ბმული (არასავალდებულო)</label>
+          <input type="url" name="listing_url" placeholder="https://airbnb.com/rooms/...">
+        </div>
+        <div class="fg">
+          <label class="lang-en">Bookings per month?</label>
+          <label class="lang-ge">ჯავშნები თვეში?</label>
+          <select name="bookings_per_month">
+            <option value="">Select...</option>
+            <option value="0-2">0–2 (almost none)</option>
+            <option value="3-6">3–6</option>
+            <option value="7-15">7–15</option>
+            <option value="15+">15+</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label class="lang-en">Message (optional)</label>
+          <label class="lang-ge">შეტყობინება</label>
+          <textarea name="message" placeholder="..."></textarea>
+        </div>
+        <button type="submit" class="sbtn lang-en">Send — get my free audit →</button>
+        <button type="submit" class="sbtn lang-ge">გაგზავნა — მინდა უფასო აუდიტი →</button>
+      </form>
     </div>
-
-    <div class="success-msg" id="success-msg">
+    <div class="smsg" id="sm">
+      <div class="smsg-icon">✓</div>
       <h3 class="lang-en">Request sent!</h3>
       <h3 class="lang-ge">მოთხოვნა გაიგზავნა!</h3>
-      <p class="lang-en" style="color: var(--text-muted); margin-top: 0.5rem;">We'll review your listing and get back to you within 24 hours.</p>
-      <p class="lang-ge" style="color: var(--text-muted); margin-top: 0.5rem;">განვიხილავთ თქვენს განცხადებას და 24 საათში დაგიკავშირდებით.</p>
+      <p class="lang-en">We'll review your listing and get back to you within 24 hours.</p>
+      <p class="lang-ge">განვიხილავთ თქვენს განცხადებას და 24 საათში დაგიკავშირდებით.</p>
     </div>
   </div>
 </div>
 
 <footer>
-  <p>© 2025 BookMore · <span class="lang-en">Airbnb Optimization · Tbilisi, Georgia</span><span class="lang-ge">Airbnb ოპტიმიზაცია · თბილისი, საქართველო</span></p>
-  <p style="margin-top: 0.5rem;">Nika · <a href="tel:+995551309680" style="color: var(--accent); text-decoration: none;">+995 551 30 96 80</a></p>
+  <a href="#" class="flogo">Book<em>More</em></a>
+  <div class="flinks">
+    <a href="tel:+995551309680">+995 551 30 96 80</a>
+    <a href="mailto:theairbnbguy129@gmail.com">theairbnbguy129@gmail.com</a>
+  </div>
+  <div style="font-size:0.75rem;color:var(--muted)">© 2025 BookMore · Tbilisi</div>
 </footer>
 
 <script>
-function setLang(lang) {
-  document.body.className = lang === 'ge' ? 'ge' : '';
-  document.getElementById('btn-en').className = 'lang-btn' + (lang === 'en' ? ' active' : '');
-  document.getElementById('btn-ge').className = 'lang-btn' + (lang === 'ge' ? ' active' : '');
-  localStorage.setItem('lang', lang);
+// Cursor
+const cur=document.getElementById('cur'),ring=document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)}
+animRing();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='6px';cur.style.height='6px';ring.style.width='52px';ring.style.height='52px';ring.style.borderColor='rgba(232,68,10,0.8)'});
+  el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';ring.style.width='36px';ring.style.height='36px';ring.style.borderColor='rgba(232,68,10,0.5)'});
+});
+
+// Nav scroll
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>50)
+});
+
+// Lang
+function setLang(l){
+  document.body.className=l==='ge'?'ge':'';
+  document.getElementById('ben').className='lb'+(l==='en'?' active':'');
+  document.getElementById('bge').className='lb'+(l==='ge'?' active':'');
+  localStorage.setItem('lang',l);
 }
+const sl=localStorage.getItem('lang');if(sl)setLang(sl);
 
-function submitForm() {
-  const name = document.getElementById('name').value.trim();
-  const phone = document.getElementById('phone').value.trim();
-  if (!name || !phone) {
-    alert(document.body.classList.contains('ge') ? 'გთხოვთ შეავსოთ სახელი და ტელეფონი' : 'Please fill in your name and phone number');
-    return;
-  }
-  document.getElementById('form-content').style.display = 'none';
-  document.getElementById('success-msg').style.display = 'block';
-}
+// Scroll reveal
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
 
-const saved = localStorage.getItem('lang');
-if (saved) setLang(saved);
+// Form
+const form=document.getElementById('cf');
+form.addEventListener('submit',async e=>{
+  e.preventDefault();
+  const btn=form.querySelector('.sbtn');
+  const origText=btn.textContent;
+  btn.textContent='...';btn.disabled=true;
+  try{
+    const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{Accept:'application/json'}});
+    if(res.ok){document.getElementById('fc').style.display='none';document.getElementById('sm').style.display='block'}
+    else{btn.textContent='Try again';btn.disabled=false}
+  }catch{btn.textContent='Try again';btn.disabled=false}
+});
 
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    const t = document.querySelector(a.getAttribute('href'));
-    if (t) t.scrollIntoView({ behavior: 'smooth' });
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}
   });
 });
 </script>
