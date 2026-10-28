@@ -1,0 +1,2166 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<title>OrivanHost — Airbnb ოპტიმიზაცია და მართვა | orivan.host</title>
+<meta name="description" content="OrivanHost (orivan.host) — Luxury Airbnb Optimization & 24/7 Co-Hosting in Tbilisi, Georgia. More guests. More bookings.">
+<meta property="og:title" content="OrivanHost — Airbnb Optimization & Management | Tbilisi">
+<meta property="og:description" content="მიიღეთ მეტი ჯავშანი და შემოსავალი თქვენი ბინიდან. სრული ოპტიმიზაცია და 24/7 კომუნიკაცია სტუმრებთან.">
+<meta property="og:url" content="https://orivan.host/">
+<meta property="og:site_name" content="OrivanHost">
+<meta property="og:type" content="website">
+<link rel="canonical" href="https://orivan.host/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,600;0,6..96,700;0,6..96,800;1,6..96,600&family=Noto+Sans+Georgian:wght@300;400;500;600;700&family=Noto+Serif+Georgian:wght@600;700;800&family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#06080E;
+  --navy:#0B1222;
+  --surface:#0F172A;
+  --surface2:#162038;
+  --emerald:#093824;
+  --emerald-light:#10B981;
+  --burgundy:#4A121A;
+  --burgundy-light:#F43F5E;
+  --gold:#D4AF37;
+  --gold-light:#F3E5AB;
+  --gold-dark:#AA820A;
+  --ivory:#FAF8F5;
+  --ivory-muted:#D8D2C7;
+  --border:rgba(212,175,55,0.22);
+  --border-subtle:rgba(255,255,255,0.08);
+  --muted:#94A3B8;
+  --font-d:'Bodoni Moda','Noto Serif Georgian',serif;
+  --font-b:'Outfit','Noto Sans Georgian',sans-serif;
+  --font-num:'Plus Jakarta Sans','Outfit',sans-serif;
+}
+
+/* ANDROID VIEWPORT & EDGE LOCK */
+html,body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+  background:var(--bg);
+  color:var(--ivory);
+  font-family:var(--font-b);
+  font-size:16px;
+  line-height:1.65;
+  -webkit-text-size-adjust:100%;
+  scroll-behavior:smooth;
+}
+body{transition:opacity 0.28s ease}
+body.lang-switching{opacity:0.35}
+body.gate-locked{overflow:hidden;height:100vh}
+
+.site-wrapper{
+  width:100%;
+  max-width:100vw;
+  overflow-x:hidden;
+  position:relative;
+}
+
+/* THICK BOLD NUMERALS */
+.font-num{
+  font-family:var(--font-num)!important;
+  font-weight:800!important;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:-0.02em;
+}
+
+/* NOISE OVERLAY */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events:none;
+  z-index:1;
+  opacity:0.45;
+}
+
+/* FULL-SCREEN LUXURY LANGUAGE WELCOME GATE */
+.lang-gate{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  background:radial-gradient(circle at 50% 25%, #131F42 0%, #06080E 75%);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:1.5rem;
+  text-align:center;
+  transition:opacity 0.55s cubic-bezier(0.16,1,0.3,1), transform 0.55s cubic-bezier(0.16,1,0.3,1), visibility 0.55s;
+}
+.lang-gate.hidden{
+  opacity:0;
+  transform:scale(1.04);
+  visibility:hidden;
+  pointer-events:none;
+}
+.gate-inner{
+  max-width:640px;
+  width:100%;
+  background:linear-gradient(160deg, rgba(15,23,42,0.92), rgba(6,8,14,0.96));
+  border:1px solid var(--border);
+  border-radius:32px;
+  padding:3.2rem 2rem;
+  box-shadow:0 30px 80px rgba(0,0,0,0.85), 0 0 60px rgba(212,175,55,0.08);
+  position:relative;
+  overflow:hidden;
+}
+.gate-logo{
+  font-family:var(--font-d);
+  font-weight:800;
+  font-size:2rem;
+  color:var(--ivory);
+  margin-bottom:0.5rem;
+  letter-spacing:-0.02em;
+}
+.gate-logo em{
+  font-style:italic;
+  background:linear-gradient(135deg,var(--gold-light),var(--gold));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.gate-tag{
+  display:inline-block;
+  font-size:0.7rem;
+  text-transform:uppercase;
+  letter-spacing:0.22em;
+  color:var(--gold);
+  margin-bottom:1.8rem;
+  font-weight:600;
+}
+.gate-title-ge{
+  font-family:var(--font-d);
+  font-size:clamp(1.75rem, 5vw, 2.75rem);
+  font-weight:800;
+  color:var(--ivory);
+  line-height:1.2;
+  margin-bottom:0.4rem;
+}
+.gate-title-en{
+  font-family:var(--font-d);
+  font-style:italic;
+  font-size:clamp(1.3rem, 3.8vw, 2rem);
+  font-weight:600;
+  color:var(--gold-light);
+  line-height:1.25;
+  margin-bottom:2.2rem;
+}
+.gate-btns{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1.1rem;
+}
+@media(max-width:520px){
+  .gate-inner{padding:2.4rem 1.35rem;border-radius:24px}
+  .gate-btns{grid-template-columns:1fr}
+}
+.gate-btn{
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:1.4rem 1.2rem;
+  cursor:pointer;
+  transition:all 0.28s ease;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0.45rem;
+  color:var(--ivory);
+}
+.gate-btn-ge{
+  background:linear-gradient(145deg, rgba(9,56,36,0.55), rgba(15,23,42,0.9));
+  border-color:var(--gold);
+  box-shadow:0 10px 30px rgba(212,175,55,0.12);
+}
+.gate-btn:hover{
+  transform:translateY(-4px);
+  border-color:var(--gold-light);
+  background:linear-gradient(135deg, rgba(212,175,55,0.22), rgba(15,23,42,0.95));
+  box-shadow:0 16px 36px rgba(212,175,55,0.22);
+}
+.gate-btn:active{transform:scale(0.97)}
+.gate-flag{font-size:2rem;line-height:1}
+.gate-lang-name{
+  font-family:var(--font-d);
+  font-size:1.35rem;
+  font-weight:800;
+  color:var(--ivory);
+}
+.gate-lang-sub{
+  font-size:0.78rem;
+  color:var(--gold-light);
+  font-weight:500;
+}
+
+/* LANGUAGE VISIBILITY (Defaults to Georgian via body.ge) */
+.ge .lang-en{display:none!important}
+.lang-ge{display:none!important}
+.ge .lang-ge{display:block!important}
+.ge span.lang-ge{display:inline!important}
+.ge span.lang-en{display:none!important}
+span.lang-ge{display:none}
+
+/* LANGUAGE TOAST (Top center so it never blocks floating WhatsApp) */
+.lang-toast{
+  position:fixed;
+  top:76px;
+  left:50%;
+  transform:translate(-50%, -16px);
+  z-index:200;
+  background:linear-gradient(135deg,var(--navy),#152244);
+  border:1px solid var(--gold);
+  color:var(--gold-light);
+  padding:0.55rem 1.2rem;
+  border-radius:100px;
+  font-size:0.78rem;
+  font-weight:600;
+  box-shadow:0 12px 30px rgba(0,0,0,0.6);
+  opacity:0;
+  pointer-events:none;
+  transition:all 0.3s cubic-bezier(0.16,1,0.3,1);
+  white-space:nowrap;
+}
+.lang-toast.show{opacity:1;transform:translate(-50%, 0)}
+
+/* FLOATING WHATSAPP BUTTON (BOTTOM RIGHT) */
+.floating-wa{
+  position:fixed;
+  bottom:22px;
+  right:20px;
+  z-index:900;
+  display:inline-flex;
+  align-items:center;
+  gap:0.65rem;
+  background:linear-gradient(135deg, #10B981, #059669);
+  color:#06080E;
+  padding:0.85rem 1.25rem;
+  border-radius:100px;
+  font-weight:800;
+  font-size:0.88rem;
+  text-decoration:none;
+  box-shadow:0 14px 35px rgba(16,185,129,0.4), 0 0 0 1px rgba(255,255,255,0.2) inset;
+  transition:transform 0.25s ease, box-shadow 0.25s ease;
+}
+.floating-wa:hover{
+  transform:translateY(-3px) scale(1.02);
+  box-shadow:0 18px 42px rgba(16,185,129,0.55);
+}
+.floating-wa-pulse{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 0 0 rgba(255,255,255,0.8);
+  animation:wapulse 1.8s infinite;
+  flex-shrink:0;
+}
+@keyframes wapulse{
+  0%{box-shadow:0 0 0 0 rgba(255,255,255,0.8)}
+  70%{box-shadow:0 0 0 8px rgba(255,255,255,0)}
+  100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}
+}
+@media(max-width:480px){
+  .floating-wa{
+    bottom:16px;
+    right:14px;
+    padding:0.78rem 1.1rem;
+    font-size:0.82rem;
+  }
+}
+
+/* NAVBAR */
+nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  width:100%;
+  max-width:100vw;
+  z-index:100;
+  padding:0.9rem 4vw;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  transition:all 0.35s ease;
+  border-bottom:1px solid transparent;
+}
+nav.scrolled{
+  background:rgba(6,8,14,0.94);
+  backdrop-filter:blur(20px);
+  border-color:var(--border);
+  box-shadow:0 10px 30px rgba(0,0,0,0.5);
+}
+.logo{
+  font-family:var(--font-d);
+  font-weight:800;
+  font-size:1.5rem;
+  letter-spacing:-0.02em;
+  text-decoration:none;
+  color:var(--ivory);
+  display:flex;
+  align-items:center;
+  gap:0.2rem;
+  flex-shrink:0;
+}
+.logo em{
+  font-style:italic;
+  background:linear-gradient(135deg,var(--gold-light),var(--gold));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:1.6rem;
+}
+.nav-links a{
+  color:var(--ivory-muted);
+  text-decoration:none;
+  font-size:0.85rem;
+  font-weight:500;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--gold-light)}
+.nav-r{display:flex;align-items:center;gap:0.55rem;flex-shrink:0}
+.lang-toggle{
+  display:flex;
+  background:rgba(15,23,42,0.9);
+  border:1px solid var(--border);
+  border-radius:100px;
+  padding:2px;
+  overflow:hidden;
+}
+.lb{
+  padding:0.3rem 0.7rem;
+  font-family:var(--font-b);
+  font-size:0.72rem;
+  font-weight:700;
+  border:none;
+  border-radius:100px;
+  background:transparent;
+  color:var(--muted);
+  cursor:pointer;
+  transition:all 0.25s ease;
+}
+.lb.active{
+  background:linear-gradient(135deg,var(--gold),var(--gold-dark));
+  color:#06080E;
+  box-shadow:0 2px 10px rgba(212,175,55,0.35);
+}
+.call-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:0.45rem;
+  background:linear-gradient(135deg,var(--emerald),#0d5235);
+  border:1px solid rgba(16,185,129,0.4);
+  color:#fff;
+  padding:0.42rem 0.95rem;
+  border-radius:100px;
+  font-size:0.78rem;
+  font-weight:600;
+  text-decoration:none;
+  transition:all 0.25s;
+  white-space:nowrap;
+}
+.call-btn:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(16,185,129,0.25)}
+.cdot{width:7px;height:7px;border-radius:50%;background:#34d399;animation:cdot 1.5s infinite;flex-shrink:0}
+@keyframes cdot{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(0.6);opacity:0.4}}
+.book-btn{
+  background:linear-gradient(135deg,var(--gold-light),var(--gold));
+  color:#06080E;
+  padding:0.45rem 1.15rem;
+  border-radius:100px;
+  font-size:0.78rem;
+  font-weight:700;
+  text-decoration:none;
+  transition:all 0.25s;
+  white-space:nowrap;
+}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:7.5rem 5vw 4.5rem;
+  position:relative;
+  overflow:hidden;
+}
+.hero-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(95px);animation:orb 9s ease-in-out infinite alternate}
+.orb1{width:420px;height:420px;background:rgba(212,175,55,0.14);top:-80px;right:-60px}
+.orb2{width:340px;height:340px;background:rgba(9,56,36,0.38);bottom:40px;left:-80px;animation-delay:2s}
+.orb3{width:280px;height:280px;background:rgba(74,18,26,0.3);top:30%;left:35%;animation-delay:4s}
+@keyframes orb{0%{transform:translate(0,0) scale(1)}100%{transform:translate(20px,15px) scale(1.05)}}
+
+.hero-grid{
+  position:absolute;
+  inset:0;
+  background-image:linear-gradient(rgba(212,175,55,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(212,175,55,0.035) 1px,transparent 1px);
+  background-size:70px 70px;
+  mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 0%,transparent 100%);
+}
+
+.htag{
+  display:inline-flex;
+  align-items:center;
+  gap:0.5rem;
+  border:1px solid var(--border);
+  background:rgba(212,175,55,0.08);
+  border-radius:100px;
+  padding:0.4rem 1rem;
+  font-size:0.72rem;
+  font-weight:600;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--gold-light);
+  margin-bottom:1.5rem;
+  width:fit-content;
+  max-width:100%;
+  position:relative;
+  z-index:2;
+}
+.htag-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:cdot 2s infinite;flex-shrink:0}
+
+h1{
+  font-family:var(--font-d);
+  font-size:clamp(2.4rem, 7vw, 6.2rem);
+  font-weight:800;
+  line-height:1.03;
+  letter-spacing:-0.025em;
+  position:relative;
+  z-index:2;
+  max-width:950px;
+  overflow-wrap:break-word;
+  word-wrap:break-word;
+}
+h1 em{
+  font-style:italic;
+  background:linear-gradient(135deg,var(--gold-light),var(--gold));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hsub{
+  font-size:clamp(0.98rem,1.5vw,1.18rem);
+  color:var(--ivory-muted);
+  max-width:590px;
+  margin:1.4rem 0 2.2rem;
+  font-weight:300;
+  line-height:1.75;
+  position:relative;
+  z-index:2;
+}
+.hbtns{
+  display:flex;
+  gap:0.85rem;
+  flex-wrap:wrap;
+  position:relative;
+  z-index:2;
+}
+.hbtn-primary{
+  background:linear-gradient(135deg,var(--gold-light),var(--gold));
+  color:#06080E;
+  padding:0.92rem 2rem;
+  border-radius:100px;
+  font-size:0.92rem;
+  font-weight:800;
+  text-decoration:none;
+  border:none;
+  cursor:pointer;
+  transition:all 0.25s ease;
+  box-shadow:0 10px 30px rgba(212,175,55,0.28);
+  text-align:center;
+}
+.hbtn-primary:hover{transform:translateY(-2px);box-shadow:0 14px 35px rgba(212,175,55,0.42)}
+.hbtn-call{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:0.55rem;
+  background:rgba(9,56,36,0.65);
+  border:1px solid rgba(16,185,129,0.45);
+  color:#6ee7b7;
+  padding:0.92rem 1.65rem;
+  border-radius:100px;
+  font-size:0.92rem;
+  font-weight:600;
+  text-decoration:none;
+  transition:all 0.25s;
+}
+.hbtn-ghost{
+  background:rgba(255,255,255,0.03);
+  color:var(--ivory);
+  padding:0.92rem 1.65rem;
+  border-radius:100px;
+  font-size:0.92rem;
+  font-weight:500;
+  text-decoration:none;
+  border:1px solid var(--border);
+  transition:all 0.25s;
+  text-align:center;
+}
+
+.hstats{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1.5rem;
+  margin-top:4rem;
+  padding-top:2.4rem;
+  border-top:1px solid var(--border);
+  position:relative;
+  z-index:2;
+}
+@media(max-width:768px){.hstats{grid-template-columns:repeat(2,1fr);gap:1.2rem}}
+.hstat-num{
+  font-size:clamp(1.65rem,3.4vw,2.75rem);
+  line-height:1.05;
+  color:var(--ivory);
+}
+.hstat-num em{font-style:normal;color:var(--gold)}
+.hstat-label{font-size:0.75rem;color:var(--muted);margin-top:0.35rem}
+
+/* SECTIONS */
+.section{padding:5.5rem 5vw;max-width:1240px;margin:0 auto;position:relative;z-index:2;width:100%}
+.slabel{
+  font-size:0.7rem;
+  font-weight:700;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:0.75rem;
+}
+h2{
+  font-family:var(--font-d);
+  font-size:clamp(1.8rem, 4.3vw, 3.45rem);
+  font-weight:700;
+  letter-spacing:-0.02em;
+  line-height:1.12;
+  margin-bottom:1rem;
+  color:var(--ivory);
+  overflow-wrap:break-word;
+  word-wrap:break-word;
+}
+.sdesc{color:var(--ivory-muted);font-size:1rem;max-width:600px;font-weight:300;line-height:1.7;margin-bottom:2.2rem;opacity:0.9}
+hr.div{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0 5vw}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.65s ease,transform 0.65s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* TBILISI APARTMENT VISUAL SHOWCASE (UPGRADE #2) */
+.showcase-grid{
+  display:grid;
+  grid-template-columns:1.15fr 0.85fr;
+  gap:1.5rem;
+  margin-top:2.5rem;
+}
+@media(max-width:860px){.showcase-grid{grid-template-columns:1fr}}
+.showcase-card{
+  position:relative;
+  border-radius:24px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  background:var(--navy);
+  min-height:340px;
+  display:flex;
+  align-items:flex-end;
+}
+.showcase-card img{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:transform 0.7s ease;
+  filter:brightness(0.82) contrast(1.05);
+}
+.showcase-card:hover img{transform:scale(1.04)}
+.showcase-overlay{
+  position:relative;
+  z-index:2;
+  width:100%;
+  padding:2rem 1.75rem 1.6rem;
+  background:linear-gradient(to top, rgba(6,8,14,0.95) 15%, rgba(6,8,14,0.55) 65%, transparent 100%);
+}
+.showcase-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:0.4rem;
+  background:rgba(16,185,129,0.22);
+  border:1px solid rgba(16,185,129,0.5);
+  color:#A7F3D0;
+  font-size:0.7rem;
+  font-weight:700;
+  padding:0.28rem 0.75rem;
+  border-radius:100px;
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  margin-bottom:0.65rem;
+}
+.showcase-title{
+  font-family:var(--font-d);
+  font-size:1.35rem;
+  font-weight:700;
+  color:var(--ivory);
+  margin-bottom:0.3rem;
+}
+.showcase-meta{
+  font-size:0.84rem;
+  color:var(--ivory-muted);
+}
+
+/* 6 PROBLEMS GRID */
+.pgrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--border);
+  border:1px solid var(--border);
+  border-radius:22px;
+  overflow:hidden;
+  margin-top:2.5rem;
+}
+@media(max-width:860px){.pgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:540px){.pgrid{grid-template-columns:1fr}}
+.pcard{
+  background:linear-gradient(160deg,var(--navy),var(--bg));
+  padding:1.85rem;
+  transition:all 0.3s ease;
+  position:relative;
+}
+.picon{font-size:1.65rem;margin-bottom:0.85rem;display:inline-block}
+.pcard h3{font-family:var(--font-d);font-size:1.1rem;font-weight:700;margin-bottom:0.5rem;color:var(--gold-light)}
+.pcard p{font-size:0.86rem;color:var(--ivory-muted);line-height:1.6;opacity:0.88}
+
+/* TWO SIGNATURE SERVICES */
+.services-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1.75rem;
+  margin-top:2.5rem;
+}
+@media(max-width:860px){.services-grid{grid-template-columns:1fr}}
+.scard{
+  border-radius:24px;
+  padding:2.2rem;
+  border:1px solid var(--border);
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+@media(max-width:520px){.scard{padding:1.5rem}}
+.scard-emerald{
+  background:linear-gradient(155deg,rgba(9,56,36,0.55),rgba(11,18,34,0.95));
+  border-color:rgba(16,185,129,0.35);
+}
+.scard-burgundy{
+  background:linear-gradient(155deg,rgba(74,18,26,0.6),rgba(11,18,34,0.95));
+  border-color:rgba(244,63,94,0.35);
+}
+.sbadge{
+  display:inline-flex;
+  align-items:center;
+  gap:0.4rem;
+  padding:0.35rem 0.85rem;
+  border-radius:100px;
+  font-size:0.7rem;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  width:fit-content;
+  max-width:100%;
+  margin-bottom:1.2rem;
+}
+.sbadge-emerald{background:rgba(16,185,129,0.15);color:#6ee7b7;border:1px solid rgba(16,185,129,0.35)}
+.sbadge-burgundy{background:rgba(244,63,94,0.15);color:#fda4af;border:1px solid rgba(244,63,94,0.35)}
+.scard h3{font-family:var(--font-d);font-size:clamp(1.35rem,3vw,1.7rem);font-weight:700;color:var(--ivory);margin-bottom:0.75rem}
+.scard p{color:var(--ivory-muted);font-size:0.92rem;margin-bottom:1.4rem;line-height:1.65}
+.slist{list-style:none;display:flex;flex-direction:column;gap:0.7rem;margin-bottom:1.8rem}
+.slist li{display:flex;align-items:flex-start;gap:0.6rem;font-size:0.88rem;color:var(--ivory)}
+.slist li span.check{color:var(--gold);font-weight:800;flex-shrink:0}
+.scard-btn{
+  width:100%;
+  padding:0.9rem 1.2rem;
+  border-radius:14px;
+  border:1px solid var(--gold);
+  background:rgba(212,175,55,0.12);
+  color:var(--gold-light);
+  font-family:var(--font-b);
+  font-weight:700;
+  font-size:0.88rem;
+  cursor:pointer;
+  transition:all 0.25s;
+}
+.scard-btn:hover{background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#06080E}
+
+/* HOW IT WORKS */
+.plist{margin-top:2rem}
+.pitem{
+  display:grid;
+  grid-template-columns:68px 1fr;
+  gap:1.25rem;
+  padding:2rem 0;
+  border-bottom:1px solid var(--border-subtle);
+}
+@media(max-width:480px){
+  .pitem{grid-template-columns:52px 1fr;gap:0.9rem;padding:1.6rem 0}
+}
+.pitem:last-child{border-bottom:none}
+.pnum{
+  font-size:clamp(2.1rem,4vw,2.9rem);
+  color:rgba(212,175,55,0.35);
+  line-height:1;
+}
+.pcontent h3{font-family:var(--font-d);font-size:1.2rem;font-weight:700;margin-bottom:0.4rem;color:var(--ivory)}
+.pcontent p{font-size:0.9rem;color:var(--ivory-muted);max-width:560px;line-height:1.65;opacity:0.88}
+
+/* CASE STUDY & CALCULATOR */
+.case-calc-grid{
+  display:grid;
+  grid-template-columns:1.05fr 0.95fr;
+  gap:1.75rem;
+  margin-top:2.5rem;
+}
+@media(max-width:900px){.case-calc-grid{grid-template-columns:1fr}}
+.case{
+  background:linear-gradient(145deg,var(--navy),var(--surface));
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:2.2rem;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+@media(max-width:520px){.case{padding:1.5rem}}
+.case-text{font-size:1rem;color:var(--ivory-muted);line-height:1.75;margin-bottom:1.75rem}
+.case-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:0.85rem}
+@media(max-width:480px){.case-metrics{grid-template-columns:1fr}}
+.cmetric{
+  background:rgba(212,175,55,0.06);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:1rem;
+  text-align:center;
+}
+.cmetric-n{font-size:1.75rem;color:var(--gold-light)}
+.cmetric-l{font-size:0.72rem;color:var(--muted);margin-top:0.2rem}
+
+.calc-card{
+  background:var(--ivory);
+  color:#06080E;
+  border-radius:24px;
+  padding:2.2rem;
+  box-shadow:0 20px 50px rgba(0,0,0,0.45);
+}
+@media(max-width:520px){.calc-card{padding:1.5rem}}
+.calc-card h3{font-family:var(--font-d);font-size:1.4rem;font-weight:800;margin-bottom:0.35rem;color:#06080E}
+.calc-slider{
+  width:100%;
+  accent-color:var(--gold-dark);
+  margin:1.1rem 0;
+  cursor:pointer;
+}
+.calc-res-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.85rem;margin-top:1rem}
+@media(max-width:420px){.calc-res-grid{grid-template-columns:1fr}}
+.calc-box{
+  background:#EFECE6;
+  border-radius:14px;
+  padding:0.95rem 1.1rem;
+}
+.calc-box-highlight{
+  background:linear-gradient(135deg,var(--emerald),#062819);
+  color:var(--ivory);
+  border-radius:14px;
+  padding:0.95rem 1.1rem;
+}
+
+/* PRICING & VISUAL SPLIT BAR CHART (UPGRADE #4 & #5) */
+.pbox{
+  background:linear-gradient(145deg,var(--navy),var(--surface));
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:2.6rem;
+  margin-top:2.5rem;
+  display:grid;
+  grid-template-columns:1.1fr 0.9fr;
+  gap:2.5rem;
+  align-items:center;
+}
+@media(max-width:780px){.pbox{grid-template-columns:1fr;padding:1.6rem;gap:1.75rem}}
+.price-big{
+  font-size:clamp(3.6rem,8vw,4.8rem);
+  line-height:1;
+  background:linear-gradient(135deg,var(--gold-light),var(--gold));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.price-sub{font-size:0.92rem;color:var(--ivory-muted);margin-top:0.45rem;font-weight:500}
+.net-clarification{
+  display:inline-block;
+  margin-top:0.55rem;
+  padding:0.35rem 0.75rem;
+  border-radius:8px;
+  background:rgba(16,185,129,0.12);
+  border:1px solid rgba(16,185,129,0.35);
+  color:#A7F3D0;
+  font-size:0.78rem;
+  font-weight:600;
+}
+
+/* VISUAL BAR CHART FOR $500 -> $425 / $75 */
+.split-chart-box{
+  margin-top:1.5rem;
+  background:rgba(6,8,14,0.65);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:1.25rem;
+}
+.split-chart-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  margin-bottom:0.75rem;
+  font-size:0.82rem;
+  color:var(--ivory-muted);
+}
+.split-bar-track{
+  width:100%;
+  height:38px;
+  background:#1E293B;
+  border-radius:10px;
+  overflow:hidden;
+  display:flex;
+  border:1px solid rgba(255,255,255,0.1);
+}
+.split-bar-host{
+  width:85%;
+  background:linear-gradient(90deg, #059669, #10B981);
+  color:#06080E;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 0.9rem;
+  font-size:0.82rem;
+  font-weight:800;
+  white-space:nowrap;
+}
+.split-bar-agency{
+  width:15%;
+  min-width:58px;
+  background:linear-gradient(135deg, var(--gold-light), var(--gold));
+  color:#06080E;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:0.76rem;
+  font-weight:800;
+}
+.split-legend{
+  display:flex;
+  justify-content:space-between;
+  gap:0.75rem;
+  margin-top:0.85rem;
+  flex-wrap:wrap;
+}
+.split-pill{
+  font-size:0.82rem;
+  color:var(--ivory);
+  display:flex;
+  align-items:center;
+  gap:0.45rem;
+}
+.split-dot-host{width:10px;height:10px;border-radius:3px;background:#10B981;display:inline-block}
+.split-dot-us{width:10px;height:10px;border-radius:3px;background:var(--gold);display:inline-block}
+
+.pfeatures{list-style:none;display:flex;flex-direction:column;gap:0.78rem}
+.pfeatures li{display:flex;align-items:flex-start;gap:0.65rem;font-size:0.9rem;color:var(--ivory-muted)}
+.pfeatures li::before{content:'✦';color:var(--gold);flex-shrink:0}
+
+/* WHO WE ARE — LOCAL TBILISI TRUST SECTION (UPGRADE #3) */
+.trust-box{
+  background:linear-gradient(155deg, rgba(15,23,42,0.95), rgba(9,56,36,0.35));
+  border:1px solid var(--border);
+  border-radius:26px;
+  padding:2.8rem;
+  display:grid;
+  grid-template-columns:1.2fr 0.8fr;
+  gap:2.2rem;
+  align-items:center;
+}
+@media(max-width:820px){.trust-box{grid-template-columns:1fr;padding:1.75rem}}
+.trust- profile-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:0.55rem;
+  background:rgba(212,175,55,0.12);
+  border:1px solid var(--border);
+  padding:0.4rem 0.9rem;
+  border-radius:100px;
+  color:var(--gold-light);
+  font-size:0.75rem;
+  font-weight:700;
+  margin-bottom:1rem;
+}
+.trust-points{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:0.9rem;
+}
+.tpoint{
+  background:rgba(6,8,14,0.6);
+  border:1px solid var(--border-subtle);
+  border-radius:16px;
+  padding:1.1rem 1.25rem;
+}
+.tpoint-title{
+  font-weight:700;
+  font-size:0.92rem;
+  color:var(--gold-light);
+  margin-bottom:0.25rem;
+}
+.tpoint-desc{
+  font-size:0.82rem;
+  color:var(--ivory-muted);
+  line-height:1.5;
+}
+
+/* BOOKING & CONTACT */
+.bsec{max-width:760px;width:100%;margin:0 auto;padding:5.5rem 5vw;position:relative;z-index:2}
+.bform{
+  background:linear-gradient(160deg,var(--navy),#090E1A);
+  border:1px solid var(--border);
+  border-radius:24px;
+  padding:2.4rem;
+  margin-top:2.2rem;
+  box-shadow:0 25px 60px rgba(0,0,0,0.6);
+  transition:box-shadow 0.4s ease,border-color 0.4s ease;
+}
+.bform.pulse-highlight{
+  border-color:var(--gold-light);
+  box-shadow:0 0 0 4px rgba(212,175,55,0.25),0 25px 60px rgba(0,0,0,0.7);
+}
+@media(max-width:540px){.bform{padding:1.4rem;border-radius:20px}}
+.fg{margin-bottom:1.25rem}
+label{
+  display:block;
+  font-size:0.73rem;
+  color:var(--gold-light);
+  margin-bottom:0.4rem;
+  font-weight:600;
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+}
+input,textarea{
+  width:100%;
+  background:rgba(255,255,255,0.04);
+  border:1px solid var(--border-subtle);
+  border-radius:12px;
+  padding:0.9rem 1rem;
+  color:var(--ivory);
+  font-family:var(--font-b);
+  font-size:0.95rem;
+  outline:none;
+  transition:all 0.2s;
+}
+input:focus,textarea:focus{
+  border-color:var(--gold);
+  background:rgba(212,175,55,0.05);
+}
+input::placeholder,textarea::placeholder{color:#64748B}
+textarea{resize:vertical;min-height:90px}
+
+/* SKIPPED URL INPUT & CHECKBOX ROW */
+input.skipped-url{
+  background:rgba(16,185,129,0.06)!important;
+  border:1px dashed rgba(16,185,129,0.45)!important;
+  color:#6ee7b7!important;
+  cursor:not-allowed;
+}
+.no-link-wrap{
+  margin-top:0.65rem;
+  display:inline-flex;
+  align-items:center;
+  gap:0.65rem;
+  padding:0.55rem 0.85rem;
+  border-radius:10px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--border);
+  cursor:pointer;
+  user-select:none;
+  transition:all 0.2s ease;
+}
+.no-link-wrap:hover{
+  border-color:var(--gold);
+  background:rgba(212,175,55,0.08);
+}
+.no-link-wrap.active{
+  background:rgba(16,185,129,0.12);
+  border-color:rgba(16,185,129,0.5);
+}
+.no-link-box{
+  width:20px;
+  height:20px;
+  border-radius:6px;
+  border:1.5px solid var(--gold);
+  background:rgba(6,8,14,0.8);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:0.75rem;
+  font-weight:800;
+  color:transparent;
+  flex-shrink:0;
+  transition:all 0.2s ease;
+}
+.no-link-wrap.active .no-link-box{
+  background:linear-gradient(135deg,var(--gold-light),var(--gold));
+  border-color:var(--gold-light);
+  color:#06080E;
+}
+.no-link-text{
+  font-size:0.8rem;
+  color:var(--ivory-muted);
+  line-height:1.35;
+}
+.no-link-wrap.active .no-link-text{
+  color:#A7F3D0;
+  font-weight:500;
+}
+
+/* LUXURY CUSTOM DROPDOWNS */
+.custom-select{position:relative;width:100%}
+.custom-select-trigger{
+  width:100%;
+  background:rgba(255,255,255,0.04);
+  border:1px solid var(--border);
+  border-radius:12px;
+  padding:0.9rem 1rem;
+  color:var(--ivory);
+  font-size:0.9rem;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:0.5rem;
+  transition:all 0.25s;
+  user-select:none;
+}
+#service-display{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.custom-select-trigger:hover,.custom-select-trigger.open{
+  border-color:var(--gold);
+  background:rgba(212,175,55,0.07);
+}
+.custom-select-arrow{font-size:0.75rem;color:var(--gold);transition:transform 0.25s;flex-shrink:0}
+.custom-select-trigger.open .custom-select-arrow{transform:rotate(180deg)}
+.custom-select-dropdown{
+  position:absolute;
+  top:calc(100% + 8px);
+  left:0;right:0;
+  background:#0D1529;
+  border:1px solid var(--gold);
+  border-radius:16px;
+  overflow:hidden;
+  z-index:80;
+  opacity:0;
+  transform:translateY(-10px) scale(0.98);
+  pointer-events:none;
+  transition:all 0.25s cubic-bezier(0.16,1,0.3,1);
+  box-shadow:0 24px 60px rgba(0,0,0,0.85);
+}
+.custom-select-dropdown.open{
+  opacity:1;
+  transform:translateY(0) scale(1);
+  pointer-events:all;
+}
+.service-option-card{
+  padding:1rem;
+  cursor:pointer;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  display:flex;
+  align-items:flex-start;
+  gap:0.85rem;
+  transition:background 0.2s;
+}
+.service-option-card:last-child{border-bottom:none}
+.service-option-card:hover{background:rgba(212,175,55,0.1)}
+.service-option-card.active{background:rgba(212,175,55,0.16)}
+.soc-icon{
+  width:38px;height:38px;
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.15rem;
+  flex-shrink:0;
+}
+.soc-emerald{background:rgba(16,185,129,0.2);border:1px solid rgba(16,185,129,0.4)}
+.soc-burgundy{background:rgba(244,63,94,0.2);border:1px solid rgba(244,63,94,0.4)}
+.soc-title{font-weight:700;font-size:0.9rem;color:var(--ivory);margin-bottom:0.2rem}
+.soc-desc{font-size:0.78rem;color:var(--muted);line-height:1.4}
+
+.custom-option{
+  padding:0.85rem 1.1rem;
+  font-size:0.9rem;
+  color:var(--ivory-muted);
+  cursor:pointer;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  transition:all 0.15s;
+}
+.custom-option:last-child{border-bottom:none}
+.custom-option:hover{background:rgba(212,175,55,0.12);color:var(--gold-light)}
+
+/* SUBMIT BUTTON */
+.sbtn{
+  width:100%;
+  background:linear-gradient(135deg,var(--gold-light),var(--gold));
+  color:#06080E;
+  padding:1rem;
+  border-radius:12px;
+  font-size:0.95rem;
+  font-weight:800;
+  border:none;
+  cursor:pointer;
+  font-family:var(--font-b);
+  transition:all 0.25s;
+  margin-top:0.4rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:0.5rem;
+}
+.sbtn:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(212,175,55,0.35)}
+.sbtn.sending .plane-icon{animation:flyPlane 0.8s forwards}
+@keyframes flyPlane{
+  0%{transform:translate(0,0) scale(1)}
+  100%{transform:translate(45px,-35px) scale(0.4);opacity:0}
+}
+
+/* SUCCESS MESSAGE & BACKUP DISPATCH */
+.smsg{display:none;text-align:center;padding:1.25rem 0.25rem}
+.smsg-icon{
+  width:58px;height:58px;
+  border-radius:50%;
+  background:rgba(16,185,129,0.15);
+  border:2px solid #10B981;
+  color:#34d399;
+  font-size:1.8rem;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1rem;
+}
+.smsg h3{font-family:var(--font-d);font-size:1.6rem;color:var(--gold-light);margin-bottom:0.45rem}
+.smsg p{color:var(--ivory-muted);font-size:0.88rem;margin-bottom:1.3rem}
+.dispatch-btns{display:flex;flex-wrap:wrap;gap:0.65rem;justify-content:center}
+.dbtn{
+  padding:0.7rem 1rem;
+  border-radius:10px;
+  font-size:0.82rem;
+  font-weight:700;
+  text-decoration:none;
+  transition:all 0.2s;
+}
+.dbtn-wa{background:#10B981;color:#06080E}
+.dbtn-gmail{background:rgba(212,175,55,0.15);border:1px solid var(--gold);color:var(--gold-light)}
+
+/* DIRECT CONTACT CARDS */
+.contact-cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:0.9rem;
+  margin-top:1.8rem;
+}
+@media(max-width:680px){.contact-cards{grid-template-columns:1fr}}
+.ccard{
+  background:rgba(15,23,42,0.85);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:1.25rem;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:0.75rem;
+}
+.ccard-title{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.12em;color:var(--gold)}
+.ccard-val{font-size:0.9rem;color:var(--ivory);word-break:break-all}
+.ccard-action{
+  display:inline-block;
+  padding:0.55rem 0.9rem;
+  border-radius:10px;
+  font-size:0.78rem;
+  font-weight:700;
+  text-decoration:none;
+  background:rgba(212,175,55,0.12);
+  border:1px solid var(--border);
+  color:var(--gold-light);
+  transition:all 0.2s;
+}
+.ccard-action:hover{background:var(--gold);color:#06080E}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--border);
+  padding:2.5rem 5vw 5.5rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:1rem;
+  position:relative;
+  z-index:2;
+}
+.flogo{font-family:var(--font-d);font-weight:800;font-size:1.3rem;color:var(--ivory);text-decoration:none}
+.flogo em{font-style:italic;color:var(--gold)}
+.flinks{display:flex;gap:1.2rem;flex-wrap:wrap;justify-content:center;font-size:0.85rem}
+.flinks a{color:var(--gold-light);text-decoration:none;transition:opacity 0.2s;word-break:break-all}
+
+@media(max-width:768px){
+  nav{padding:0.8rem 4vw}
+  .nav-links,.book-btn{display:none}
+  .logo{font-size:1.35rem}
+  .section{padding:4rem 4.5vw}
+  .hero{padding:6.8rem 4.5vw 3.5rem}
+  .hbtns{flex-direction:column;width:100%}
+  .hbtn-primary,.hbtn-call,.hbtn-ghost{width:100%}
+  .bsec{padding:4rem 4.5vw}
+  footer{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body class="ge gate-locked">
+
+<!-- LUXURY WELCOME LANGUAGE SELECTION GATE -->
+<div id="lang-gate" class="lang-gate">
+  <div class="gate-inner">
+    <div class="gate-logo">Orivan<em>Host</em></div>
+    <div class="gate-tag">orivan.host · Luxury Airbnb Management</div>
+    <div class="gate-title-ge">რა ენაზე გსურთ გაგრძელება?</div>
+    <div class="gate-title-en">Which language do you speak?</div>
+    <div class="gate-btns">
+      <button class="gate-btn gate-btn-ge" onclick="chooseInitialLang('ge')">
+        <span class="gate-flag">🇬🇪</span>
+        <span class="gate-lang-name">ქართული</span>
+        <span class="gate-lang-sub">გაგრძელება ქართულად →</span>
+      </button>
+      <button class="gate-btn" onclick="chooseInitialLang('en')">
+        <span class="gate-flag">🇬🇧</span>
+        <span class="gate-lang-name">English</span>
+        <span class="gate-lang-sub">Continue in English →</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="lang-toast" class="lang-toast">🇬🇪 ენა შეიცვალა: ქართული</div>
+
+<!-- FLOATING WHATSAPP BUTTON (BOTTOM-RIGHT) -->
+<a href="https://wa.me/995597994140?text=%E1%83%92%E1%83%90%E1%83%9B%E1%83%90%E1%83%A0%E1%83%AF%E1%83%9D%E1%83%91%E1%83%90!%20OrivanHost-%E1%83%98%E1%83%A1%20Airbnb%20%E1%83%9D%E1%83%9E%E1%83%A2%E1%83%98%E1%83%9B%E1%83%98%E1%83%96%E1%83%90%E1%83%AA%E1%83%98%E1%83%90%20%E1%83%9B%E1%83%90%E1%83%98%E1%83%9C%E1%83%A2%E1%83%94%E1%83%A0%E1%83%94%E1%83%A1%E1%83%94%E1%83%91%E1%83%A1." target="_blank" class="floating-wa" aria-label="Chat on WhatsApp">
+  <span class="floating-wa-pulse"></span>
+  <span>WhatsApp · <span class="font-num">597 99 41 40</span></span>
+</a>
+
+<div class="site-wrapper">
+  <nav id="nav">
+    <a href="https://orivan.host/" class="logo">Orivan<em>Host</em></a>
+    <div class="nav-links">
+      <a href="#problems"><span class="lang-en">Why Listings Fail</span><span class="lang-ge">პრობლემები</span></a>
+      <a href="#services"><span class="lang-en">Our Services</span><span class="lang-ge">სერვისები</span></a>
+      <a href="#pricing"><span class="lang-en">15% Pricing</span><span class="lang-ge">ტარიფი</span></a>
+      <a href="#about"><span class="lang-en">Who We Are</span><span class="lang-ge">ჩვენ შესახებ</span></a>
+    </div>
+    <div class="nav-r">
+      <div class="lang-toggle">
+        <button class="lb active" onclick="setLang('ge')" id="bge">GE</button>
+        <button class="lb" onclick="setLang('en')" id="ben">EN</button>
+      </div>
+      <a href="tel:+995597994140" class="call-btn">
+        <div class="cdot"></div>
+        <span class="lang-en">Call</span>
+        <span class="lang-ge">ზარი</span>
+      </a>
+      <a href="#book" onclick="scrollToConsultation(event)" class="book-btn">
+        <span class="lang-en">Free Audit</span>
+        <span class="lang-ge">აუდიტი</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-orb orb1"></div>
+      <div class="hero-orb orb2"></div>
+      <div class="hero-orb orb3"></div>
+      <div class="hero-grid"></div>
+    </div>
+
+    <div class="htag">
+      <div class="htag-dot"></div>
+      <span class="lang-en">OrivanHost · Airbnb Optimization & Co-Hosting · Tbilisi</span>
+      <span class="lang-ge">OrivanHost · Airbnb ოპტიმიზაცია და მართვა · თბილისი</span>
+    </div>
+
+    <h1 class="lang-en">More guests.<br>More <em>bookings.</em></h1>
+    <h1 class="lang-ge">მეტი სტუმარი.<br>მეტი <em>ჯავშანი.</em></h1>
+
+    <p class="hsub lang-en">We optimize your Airbnb listing and handle 24/7 guest communication so more people find it, click it, and book it. Title, photos, pricing, description — everything that matters.</p>
+    <p class="hsub lang-ge">ვაუმჯობესებთ თქვენს Airbnb-ის განცხადებას და ვმართავთ 24/7 კომუნიკაციას სტუმრებთან. სათაური, ფოტოები, ფასი, აღწერა — ყველაფერი, რაც მნიშვნელოვანია.</p>
+
+    <div class="hbtns">
+      <a href="#book" onclick="scrollToConsultation(event)" class="hbtn-primary">
+        <span class="lang-en">Book Free Consultation</span>
+        <span class="lang-ge">უფასო კონსულტაცია</span>
+      </a>
+      <a href="https://wa.me/995597994140" target="_blank" class="hbtn-call font-num">
+        <div class="cdot"></div>
+        <span>WhatsApp: +995 597 99 41 40</span>
+      </a>
+      <a href="#services" class="hbtn-ghost">
+        <span class="lang-en">Our Services ↓</span>
+        <span class="lang-ge">ჩვენი სერვისები ↓</span>
+      </a>
+    </div>
+
+    <div class="hstats">
+      <div class="hstat">
+        <div class="hstat-num font-num">2 <em>→</em> 88<em>%</em></div>
+        <div class="hstat-label lang-en">from 2 bookings to 88% annual occupancy</div>
+        <div class="hstat-label lang-ge">2 ჯავშნიდან 88%-იან წლიურ დატვირთვამდე</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num font-num">15<em>%</em></div>
+        <div class="hstat-label lang-en">of net host payout (results only)</div>
+        <div class="hstat-label lang-ge">სუფთა შემოსავლიდან (მხოლოდ შედეგზე)</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num font-num">24<em>/</em>7</div>
+        <div class="hstat-label lang-en">instant guest replies (EN / GE)</div>
+        <div class="hstat-label lang-ge">მყისიერი პასუხები სტუმრებს</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-num font-num">6 <em>mo</em></div>
+        <div class="hstat-label lang-en">partnership period</div>
+        <div class="hstat-label lang-ge">თანამშრომლობის პერიოდი</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="div">
+
+  <!-- TBILISI APARTMENT VISUAL SHOWCASE -->
+  <div class="section reveal">
+    <div class="slabel lang-en">Visual Standards</div>
+    <div class="slabel lang-ge">ვიზუალური სტანდარტი</div>
+    <h2 class="lang-en">How an optimized Tbilisi<br>listing should look</h2>
+    <h2 class="lang-ge">როგორ უნდა გამოიყურებოდეს<br>ოპტიმიზებული ბინა თბილისში</h2>
+    <p class="sdesc lang-en">Guests decide in under 2 seconds whether to click your cover photo. We stage, reorder, and partner with Airbnb photographers so your apartment looks like a boutique hotel.</p>
+    <p class="sdesc lang-ge">სტუმარი 2 წამში წყვეტს, დააწკაპოს თუ არა თქვენს მთავარ ფოტოს. ჩვენ ვალაგებთ კადრებს და ვთანამშრომლობთ Airbnb-ის ფოტოგრაფებთან, რათა თქვენი ბინა პრემიუმ სტანდარტით წარმოჩინდეს.</p>
+
+    <div class="showcase-grid">
+      <div class="showcase-card">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85" alt="Optimized Tbilisi Apartment Living Room" loading="lazy">
+        <div class="showcase-overlay">
+          <div class="showcase-tag">✦ <span class="lang-en">Cover Photo Standard · Old Tbilisi</span><span class="lang-ge">მთავარი ფოტოს სტანდარტი · ძველი თბილისი</span></div>
+          <div class="showcase-title">
+            <span class="lang-en">Warm Natural Light & Wide-Angle Depth</span>
+            <span class="lang-ge">ბუნებრივი განათება და სივრცის სწორი კუთხე</span>
+          </div>
+          <div class="showcase-meta">
+            <span class="lang-en"> Click-through rate increased by <strong class="font-num">+64%</strong> after cover photo & SEO title overhaul</span>
+            <span class="lang-ge"> ნახვების დაწკაპუნება გაიზარდა <strong class="font-num">+64%</strong>-ით მთავარი ფოტოსა და სათაურის შეცვლის შემდეგ</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="showcase-card">
+        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=85" alt="Boutique Bedroom Staging Tbilisi" loading="lazy">
+        <div class="showcase-overlay">
+          <div class="showcase-tag">✦ <span class="lang-en">Vake / Vera Boutique Suite</span><span class="lang-ge">ვაკე / ვერა · პრემიუმ ინტერიერი</span></div>
+          <div class="showcase-title">
+            <span class="lang-en">Hotel-Grade Presentation</span>
+            <span class="lang-ge">სასტუმროს დონის პრეზენტაცია</span>
+          </div>
+          <div class="showcase-meta">
+            <span class="lang-en">Allows hosts to command <strong class="font-num">+$15–$25</strong> higher nightly rates</span>
+            <span class="lang-ge">საშუალებას გაძლევთ ღამის ფასი <strong class="font-num">+$15–$25</strong>-ით გაზარდოთ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- PROBLEMS -->
+  <div class="section reveal" id="problems">
+    <div class="slabel lang-en">The Problem</div>
+    <div class="slabel lang-ge">პრობლემა</div>
+    <h2 class="lang-en">Why your listing<br>isn't getting booked</h2>
+    <h2 class="lang-ge">რატომ არ ჯავშნიან<br>თქვენს განცხადებას</h2>
+
+    <div class="pgrid">
+      <div class="pcard">
+        <span class="picon">📸</span>
+        <h3 class="lang-en">Wrong cover photo</h3>
+        <h3 class="lang-ge">არასწორი მთავარი ფოტო</h3>
+        <p class="lang-en">Your first photo determines whether guests click or scroll past. Most hosts get this wrong.</p>
+        <p class="lang-ge">პირველი ფოტო განსაზღვრავს, დააწკაპოს თუ გადაახვიოს სტუმარი.</p>
+      </div>
+      <div class="pcard">
+        <span class="picon">🔍</span>
+        <h3 class="lang-en">No keywords in title</h3>
+        <h3 class="lang-ge">კეივორდები სათაურში არ არის</h3>
+        <p class="lang-en">If your title doesn't match what guests search, Airbnb won't show your listing. Simple as that.</p>
+        <p class="lang-ge">თუ სათაური არ ემთხვევა ძიებას, Airbnb არ გაჩვენებს შენს განცხადებას.</p>
+      </div>
+      <div class="pcard">
+        <span class="picon">💰</span>
+        <h3 class="lang-en">Wrong pricing</h3>
+        <h3 class="lang-ge">არასწორი ფასი</h3>
+        <p class="lang-en">Too high kills bookings. Too low kills revenue. Most hosts are leaving money on the table.</p>
+        <p class="lang-ge">ძალიან მაღალი — კლავს ჯავშნებს. ძალიან დაბალი — კლავს შემოსავალს.</p>
+      </div>
+      <div class="pcard">
+        <span class="picon">📝</span>
+        <h3 class="lang-en">Generic description</h3>
+        <h3 class="lang-ge">ზოგადი აღწერა</h3>
+        <p class="lang-en">"Nice apartment in good location" tells guests nothing. It should make them book immediately.</p>
+        <p class="lang-ge">"კარგ ადგილას ბინა" სტუმრებს არაფერს ეუბნება.</p>
+      </div>
+      <div class="pcard">
+        <span class="picon">⚙️</span>
+        <h3 class="lang-en">Bad settings</h3>
+        <h3 class="lang-ge">არასწორი პარამეტრები</h3>
+        <p class="lang-en">Instant Book off, wrong minimum stays, missing amenities — quietly killing your ranking.</p>
+        <p class="lang-ge">Instant Book გამორთული, არასწორი მინ. ღამეები — ჩუმად კლავს რეიტინგს.</p>
+      </div>
+      <div class="pcard">
+        <span class="picon">📉</span>
+        <h3 class="lang-en">Algorithm changes</h3>
+        <h3 class="lang-ge">ალგორითმის ცვლილებები</h3>
+        <p class="lang-en">Airbnb updates its algorithm constantly. What worked last year may hurt you today.</p>
+        <p class="lang-ge">Airbnb მუდმივად ცვლის ალგორითმს. გასული წელი ≠ დღეს.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- OUR 2 SIGNATURE SERVICES -->
+  <div class="section reveal" id="services">
+    <div class="slabel lang-en">Our Services</div>
+    <div class="slabel lang-ge">ჩვენი სერვისები</div>
+    <h2 class="lang-en">Two ways we turn your<br>apartment into a top earner</h2>
+    <h2 class="lang-ge">ორი გზა, რომლითაც თქვენს<br>ბინას მაქსიმალურად ვაქირავებთ</h2>
+    <p class="sdesc lang-en">Choose complete profile optimization to fix every ranking issue, or let our team handle 24/7 guest messaging for you.</p>
+    <p class="sdesc lang-ge">აირჩიეთ სრული ოპტიმიზაცია ყველა პრობლემის მოსაგვარებლად, ან მოგვანდეთ სტუმრებთან 24/7 კომუნიკაცია.</p>
+
+    <div class="services-grid">
+      <!-- Service 1 -->
+      <div class="scard scard-emerald">
+        <div>
+          <div class="sbadge sbadge-emerald">
+            <span>🛠️</span>
+            <span class="lang-en">Fix Every Problem</span>
+            <span class="lang-ge">ყველა პრობლემის მოგვარება</span>
+          </div>
+          <h3 class="lang-en"><span class="font-num">01.</span> Full Optimization</h3>
+          <h3 class="lang-ge"><span class="font-num">01.</span> სრული ოპტიმიზაცია</h3>
+          <p class="lang-en">We rebuild your Airbnb profile from the ground up so the algorithm pushes your apartment to page one and converts views into bookings.</p>
+          <p class="lang-ge">საფუძვლიანად ვაახლებთ თქვენს პროფილს, რათა Airbnb-ის ალგორითმმა ბინა პირველ გვერდზე გადაიყვანოს და ნახვები ჯავშნებად აქციოს.</p>
+          <ul class="slist">
+            <li><span class="check">✦</span><span class="lang-en">High-converting SEO title & full description rewrite</span><span class="lang-ge">SEO სათაური და სრული აღწერილობის გადაწერა</span></li>
+            <li><span class="check">✦</span><span class="lang-en">Cover photo selection, ordering & partnering with professional Airbnb photographers</span><span class="lang-ge">მთავარი ფოტოს შერჩევა, დალაგება და Airbnb-ის პროფესიონალ ფოტოგრაფებთან თანამშრომლობა</span></li>
+            <li><span class="check">✦</span><span class="lang-en">Dynamic seasonal pricing & minimum-stay calendar strategy</span><span class="lang-ge">დინამიური ფასების სტრატეგია და კალენდრის გამართვა</span></li>
+            <li><span class="check">✦</span><span class="lang-en">Complete algorithm settings & hidden ranking audit</span><span class="lang-ge">ალგორითმის პარამეტრების სრული გასწორება</span></li>
+          </ul>
+        </div>
+        <button class="scard-btn" onclick="chooseServiceAndScroll('Full Optimization (Fix Every Problem)')">
+          <span class="lang-en">Choose Full Optimization →</span>
+          <span class="lang-ge">აირჩიეთ სრული ოპტიმიზაცია →</span>
+        </button>
+      </div>
+
+      <!-- Service 2 -->
+      <div class="scard scard-burgundy">
+        <div>
+          <div class="sbadge sbadge-burgundy">
+            <span>💬</span>
+            <span class="lang-en">Instant Replies <span class="font-num">24/7</span></span>
+            <span class="lang-ge">სწრაფი პასუხები <span class="font-num">24/7</span></span>
+          </div>
+          <h3 class="lang-en"><span class="font-num">02.</span> <span class="font-num">24/7</span> Guest Communication</h3>
+          <h3 class="lang-ge"><span class="font-num">02.</span> <span class="font-num">24/7</span> კომუნიკაცია სტუმრებთან</h3>
+          <p class="lang-en">Never miss a booking because of a late reply. We message guests in fluent English and Georgian day and night to secure 5-star reviews.</p>
+          <p class="lang-ge">აღარ დაკარგოთ ჯავშნები დაგვიანებული პასუხის გამო. ჩვენ ვპასუხობთ სტუმრებს ქართულ და ინგლისურ ენებზე დღე-ღამის ნებისმიერ დროს.</p>
+          <ul class="slist">
+            <li><span class="check">✦</span><span class="lang-en">Under <strong class="font-num">3-minute</strong> average response time <strong class="font-num">24/7</strong></span><span class="lang-ge">საშუალოდ <strong class="font-num">3 წუთზე</strong> ნაკლებ დროში პასუხი <strong class="font-num">24/7</strong>-ზე</span></li>
+            <li><span class="check">✦</span><span class="lang-en">Seamless check-in instructions & arrival coordination</span><span class="lang-ge">ჩექ-ინის ინსტრუქციები და სტუმრების დახვედრის კოორდინაცია</span></li>
+            <li><span class="check">✦</span><span class="lang-en">Cleaning schedule coordination & guest support</span><span class="lang-ge">დასუფთავების გრაფიკის კონტროლი და სტუმრების მხარდაჭერა</span></li>
+            <li><span class="check">✦</span><span class="lang-en">Proactive <strong class="font-num">5-star</strong> review management for Superhost status</span><span class="lang-ge"><strong class="font-num">5-ვარსკვლავიანი</strong> შეფასებების მართვა Superhost სტატუსისთვის</span></li>
+          </ul>
+        </div>
+        <button class="scard-btn" onclick="chooseServiceAndScroll('24/7 Guest Communication')">
+          <span class="lang-en">Choose 24/7 Communication →</span>
+          <span class="lang-ge">აირჩიეთ 24/7 კომუნიკაცია →</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- CASE STUDY + CALCULATOR (UPGRADE #1: DEFENSIBLE CREDIBLE METRICS) -->
+  <div class="section reveal">
+    <div class="slabel lang-en">Real Result & Estimator</div>
+    <div class="slabel lang-ge">რეალური შედეგი და კალკულატორი</div>
+    <h2 class="lang-en">From <span class="font-num">2</span> bookings to<br>consistently booked out</h2>
+    <h2 class="lang-ge"><span class="font-num">2</span> ჯავშნიდან სტაბილურ<br>სრულ დატვირთვამდე</h2>
+
+    <div class="case-calc-grid">
+      <div class="case">
+        <p class="case-text lang-en">"A Tbilisi host had only <strong class="font-num">2</strong> bookings in an entire year. After OrivanHost overhauled the cover photo, SEO title, description, and dynamic pricing — the apartment went from sitting empty to consistently booked out (<strong class="font-num">310+</strong> nights booked across the following <strong class="font-num">12</strong> months)."</p>
+        <p class="case-text lang-ge">"თბილისელ მასპინძელს მთელი წლის განმავლობაში მხოლოდ <strong class="font-num">2</strong> ჯავშანი ჰქონდა. მთავარი ფოტოს, სათაურის, აღწერისა და დინამიური ფასის ოპტიმიზაციის შემდეგ, ბინა მუდმივად დატვირთული გახდა (<strong class="font-num">310+</strong> დაჯავშნილი ღამე მომდევნო <strong class="font-num">12</strong> თვეში)."</p>
+        <div class="case-metrics">
+          <div class="cmetric">
+            <div class="cmetric-n font-num">2</div>
+            <div class="cmetric-l lang-en">bookings before</div>
+            <div class="cmetric-l lang-ge">ჯავშანი ადრე</div>
+          </div>
+          <div class="cmetric">
+            <div class="cmetric-n font-num" style="color:#34d399">310+</div>
+            <div class="cmetric-l lang-en">nights booked / 12 mo</div>
+            <div class="cmetric-l lang-ge">ღამე 12 თვეში</div>
+          </div>
+          <div class="cmetric">
+            <div class="cmetric-n font-num">88%</div>
+            <div class="cmetric-l lang-en">Tbilisi occupancy</div>
+            <div class="cmetric-l lang-ge">წლიური დატვირთვა</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive Yield Calculator -->
+      <div class="calc-card">
+        <h3 class="lang-en">Estimate Your Monthly Payout</h3>
+        <h3 class="lang-ge">გამოთვალეთ თქვენი სუფთა შემოსავალი</h3>
+        <p style="font-size:0.85rem;color:#475569">
+          <span class="lang-en">Slide your nightly rate to see net host earnings at <strong class="font-num">24</strong> booked nights/month:</span>
+          <span class="lang-ge">აირჩიეთ ღამის ფასი (<strong class="font-num">24</strong> დაჯავშნილი ღამე/თვეში):</span>
+        </p>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:1rem">
+          <span style="font-size:0.8rem;font-weight:700;text-transform:uppercase;color:#64748B">
+            <span class="lang-en">Nightly Rate</span>
+            <span class="lang-ge">ღამის ფასი</span>
+          </span>
+          <span id="calc-rate" class="font-num" style="font-size:1.8rem;color:#06080E">$55</span>
+        </div>
+        <input type="range" min="25" max="200" value="55" step="5" class="calc-slider" id="rate-slider" oninput="updateCalc(this.value)">
+        <div class="calc-res-grid">
+          <div class="calc-box">
+            <div style="font-size:0.72rem;color:#64748B;text-transform:uppercase;font-weight:700">
+              <span class="lang-en">Unoptimized (<span class="font-num">10</span> nights)</span>
+              <span class="lang-ge">ოპტიმიზაციის გარეშე</span>
+            </div>
+            <div id="calc-before" class="font-num" style="font-size:1.4rem;color:#334155;margin-top:0.25rem">$550/mo</div>
+          </div>
+          <div class="calc-box-highlight">
+            <div style="font-size:0.72rem;color:#A7F3D0;text-transform:uppercase;font-weight:700">
+              <span class="lang-en">You Keep (<span class="font-num">85%</span> Net)</span>
+              <span class="lang-ge">თქვენ გრჩებათ (<span class="font-num">85%</span>)</span>
+            </div>
+            <div id="calc-after" class="font-num" style="font-size:1.5rem;color:var(--gold-light);margin-top:0.25rem">$1,122/mo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- HOW IT WORKS -->
+  <div class="section reveal" id="how">
+    <div class="slabel lang-en">How It Works</div>
+    <div class="slabel lang-ge">როგორ მუშაობს</div>
+    <h2 class="lang-en">Simple. Fast. Results.</h2>
+    <h2 class="lang-ge">მარტივი. სწრაფი. შედეგი.</h2>
+
+    <div class="plist">
+      <div class="pitem">
+        <div class="pnum font-num">01</div>
+        <div class="pcontent">
+          <h3 class="lang-en">You reach out</h3>
+          <h3 class="lang-ge">გვიკავშირდებით</h3>
+          <p class="lang-en">Fill the form or message us on WhatsApp. We review your listing and send you a free audit of exactly what's hurting your ranking within <strong class="font-num">24</strong> hours.</p>
+          <p class="lang-ge">შეავსეთ ფორმა ან მოგვწერეთ WhatsApp-ში. <strong class="font-num">24</strong> საათში გამოგიგზავნით თქვენი განცხადების უფასო აუდიტს.</p>
+        </div>
+      </div>
+      <div class="pitem">
+        <div class="pnum font-num">02</div>
+        <div class="pcontent">
+          <h3 class="lang-en">We optimize everything</h3>
+          <h3 class="lang-ge">ვაოპტიმიზებთ ყველაფერს</h3>
+          <p class="lang-en">Title, description, photos, pricing, settings, and <strong class="font-num">24/7</strong> guest communication setup. When new visuals are needed, we partner with professional Airbnb photographers to showcase your apartment.</p>
+          <p class="lang-ge">სათაური, აღწერა, ფოტოები, ფასი, პარამეტრები და <strong class="font-num">24/7</strong> კომუნიკაცია. საჭიროების შემთხვევაში ვთანამშრომლობთ Airbnb-ის პროფესიონალ ფოტოგრაფებთან საუკეთესო კადრებისთვის.</p>
+        </div>
+      </div>
+      <div class="pitem">
+        <div class="pnum font-num">03</div>
+        <div class="pcontent">
+          <h3 class="lang-en">Bookings increase</h3>
+          <h3 class="lang-ge">ჯავშნები იზრდება</h3>
+          <p class="lang-en">With your upgraded profile, Airbnb partner photography, and smart pricing active, we monitor weekly and adjust algorithm settings while you watch your calendar fill up.</p>
+          <p class="lang-ge">განახლებული პროფილით, Airbnb-ის პარტნიორი ფოტოგრაფების კადრებითა და სწორი ფასებით, ყოველ კვირას ვაკვირდებით შედეგებს, თქვენ კი კალენდრის შევსებას უყურებთ.</p>
+        </div>
+      </div>
+      <div class="pitem">
+        <div class="pnum font-num">04</div>
+        <div class="pcontent">
+          <h3 class="lang-en">Pay only on net results</h3>
+          <h3 class="lang-ge">იხდით მხოლოდ სუფთა შედეგზე</h3>
+          <p class="lang-en"><strong class="font-num">15%</strong> of net host payout (after Airbnb's own service fees) for <strong class="font-num">6</strong> months. All payouts go directly to your account first. No bookings = no payment.</p>
+          <p class="lang-ge">სუფთა შემოსავლის <strong class="font-num">15%</strong> (Airbnb-ის საკომისიოს გამოკლების შემდეგ) — <strong class="font-num">6</strong> თვე. თანხა პირდაპირ თქვენს ანგარიშზე ირიცხება. ჯავშნები არ გაიზარდა = არაფერს გადაიხდით.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- PRICING WITH VISUAL SPLIT BAR & NET PAYOUT CLARIFICATION (UPGRADES #4 & #5) -->
+  <div class="section reveal" id="pricing">
+    <div class="slabel lang-en">Transparent Pricing</div>
+    <div class="slabel lang-ge">გამჭვირვალე ტარიფი</div>
+    <h2 class="lang-en">You only pay<br>when you earn</h2>
+    <h2 class="lang-ge">იხდით მხოლოდ<br>მაშინ, როცა გამოიმუშავებთ</h2>
+
+    <div class="pbox">
+      <div>
+        <div class="price-big font-num">15%</div>
+        <div class="price-sub lang-en">of monthly net booking payout · <span class="font-num">6</span> months</div>
+        <div class="price-sub lang-ge">ყოველთვიური სუფთა შემოსავლიდან · <span class="font-num">6</span> თვე</div>
+        
+        <div class="net-clarification">
+          <span class="lang-en">✓ Calculated on Net Host Payout (after Airbnb's service fee is deducted)</span>
+          <span class="lang-ge">✓ ითვლება სუფთა ჩარიცხვიდან (Airbnb-ის საკომისიოს გამოკლების შემდეგ)</span>
+        </div>
+
+        <!-- VISUAL REVENUE SPLIT BAR CHART -->
+        <div class="split-chart-box">
+          <div class="split-chart-header">
+            <span>
+              <span class="lang-en">Example Monthly Net Payout:</span>
+              <span class="lang-ge">მაგალითი — თვიური სუფთა ჩარიცხვა:</span>
+            </span>
+            <strong class="font-num" style="font-size:1.1rem;color:var(--ivory)">$500</strong>
+          </div>
+          <div class="split-bar-track">
+            <div class="split-bar-host font-num">
+              <span>85% YOURS</span>
+              <span>$425</span>
+            </div>
+            <div class="split-bar-agency font-num">
+              15% ($75)
+            </div>
+          </div>
+          <div class="split-legend">
+            <div class="split-pill">
+              <span class="split-dot-host"></span>
+              <span class="lang-en">You keep <strong class="font-num">$425 (85%)</strong></span>
+              <span class="lang-ge">თქვენ გრჩებათ <strong class="font-num">$425 (85%)</strong></span>
+            </div>
+            <div class="split-pill">
+              <span class="split-dot-us"></span>
+              <span class="lang-en">OrivanHost <strong class="font-num">$75 (15%)</strong></span>
+              <span class="lang-ge">OrivanHost <strong class="font-num">$75 (15%)</strong></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ul class="pfeatures lang-en">
+        <li>Full listing audit and algorithm optimization</li>
+        <li>SEO Title + full persuasive description rewrite</li>
+        <li>Photo reordering + Airbnb partner photographers</li>
+        <li><strong class="font-num">24/7</strong> bilingual guest communication & check-in support</li>
+        <li>Dynamic seasonal pricing strategy setup</li>
+        <li>Payouts go directly to your bank account from Airbnb</li>
+        <li>Weekly ranking monitoring for <strong class="font-num">6</strong> months</li>
+        <li>Zero upfront fee — no bookings = no payment</li>
+      </ul>
+      <ul class="pfeatures lang-ge">
+        <li>სრული აუდიტი და ალგორითმის ოპტიმიზაცია</li>
+        <li>SEO სათაური + სრული აღწერის გადაწერა</li>
+        <li>ფოტოების გადალაგება + Airbnb-ის პარტნიორი ფოტოგრაფები</li>
+        <li><strong class="font-num">24/7</strong> კომუნიკაცია სტუმრებთან (ქართულად და ინგლისურად)</li>
+        <li>დინამიური ფასების სტრატეგია სეზონის მიხედვით</li>
+        <li>თანხა Airbnb-დან პირდაპირ თქვენს ბანკში ირიცხება</li>
+        <li>ყოველკვირეული მონიტორინგი <strong class="font-num">6</strong> თვე</li>
+        <li>წინასწარ არაფერს იხდით — შედეგის გარეშე გადასახადი <strong class="font-num">0₾</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- WHO WE ARE — LOCAL TBILISI HOST TRUST SECTION (UPGRADE #3) -->
+  <div class="section reveal" id="about">
+    <div class="slabel lang-en">Who We Are</div>
+    <div class="slabel lang-ge">ვინ ვართ ჩვენ</div>
+    <h2 class="lang-en">Built by active Tbilisi hosts —<br>not a faceless agency</h2>
+    <h2 class="lang-ge">შექმნილია თბილისელი ჰოსტების მიერ —<br>პირადი პასუხისმგებლობით</h2>
+
+    <div class="trust-box">
+      <div>
+        <div class="trust-profile-badge" style="display:inline-flex;align-items:center;gap:0.5rem;background:rgba(212,175,55,0.12);border:1px solid var(--border);padding:0.4rem 0.9rem;border-radius:100px;color:var(--gold-light);font-size:0.75rem;font-weight:700;margin-bottom:1.1rem">
+          <span>🇬🇪</span>
+          <span class="lang-en">Founded & Based in Tbilisi, Georgia</span>
+          <span class="lang-ge">დაფუძნებულია თბილისში</span>
+        </div>
+        <p style="font-size:1.02rem;color:var(--ivory);line-height:1.8;margin-bottom:1.1rem">
+          <span class="lang-en">We actively host and manage short-term rental apartments in Tbilisi ourselves. We know firsthand how frustrating it is when a great apartment sits empty because of Airbnb's search algorithm, slow guest replies, or unoptimized pricing.</span>
+          <span class="lang-ge">ჩვენ თავად ვმართავთ დღიურად გასაქირავებელ ბინებს თბილისში და პრაქტიკული გამოცდილებით ვიცით, რა განსხვავებას ქმნის სწორად გამართული Airbnb-ის პროფილი, სწრაფი კომუნიკაცია და დინამიური ფასები.</span>
+        </p>
+        <p style="font-size:0.92rem;color:var(--ivory-muted);line-height:1.75">
+          <span class="lang-en">When you work with <strong>OrivanHost</strong>, you work directly with our local Tbilisi team on WhatsApp and phone — never a ticket system. You keep 100% ownership of your Airbnb account and receive all guest payouts directly from Airbnb.</span>
+          <span class="lang-ge"><strong>OrivanHost</strong>-თან თანამშრომლობისას თქვენ პირდაპირ კონტაქტზე ხართ ჩვენს გუნდთან თბილისში. თქვენი Airbnb-ის პროფილი და ყველა ჩარიცხვა სრულად რჩება თქვენს კონტროლქვეშ.</span>
+        </p>
+      </div>
+
+      <div class="trust-points">
+        <div class="tpoint">
+          <div class="tpoint-title">
+            <span class="lang-en">🔒 Direct Payout Security</span>
+            <span class="lang-ge">🔒 თანხა პირდაპირ თქვენს ანგარიშზე</span>
+          </div>
+          <div class="tpoint-desc">
+            <span class="lang-en">Airbnb sends 100% of booking payouts straight to your bank card. We only invoice our 15% after you get paid.</span>
+            <span class="lang-ge">Airbnb თანხას პირდაპირ თქვენს საბანკო ანგარიშზე რიცხავს. ჩვენს 15%-ს იხდით მხოლოდ მას შემდეგ, რაც შემოსავალს მიიღებთ.</span>
+          </div>
+        </div>
+        <div class="tpoint">
+          <div class="tpoint-title">
+            <span class="lang-en">🤝 Official Co-Host Access</span>
+            <span class="lang-ge">🤝 უსაფრთხო Co-Host წვდომა</span>
+          </div>
+          <div class="tpoint-desc">
+            <span class="lang-en">No need to share your personal password — you can invite us via Airbnb's official Co-Host permission system.</span>
+            <span class="lang-ge">პაროლის გაზიარებაც კი არ არის აუცილებელი — შეგიძლიათ დაგვამატოთ Airbnb-ის ოფიციალური Co-Host ფუნქციით.</span>
+          </div>
+        </div>
+        <div class="tpoint">
+          <div class="tpoint-title">
+            <span class="lang-en">📍 Local Tbilisi Market Data</span>
+            <span class="lang-ge">📍 თბილისის ბაზრის ანალიტიკა</span>
+          </div>
+          <div class="tpoint-desc">
+            <span class="lang-en">We track seasonality across Old Tbilisi, Sololaki, Vera, Vake, and Saburtalo to maximize nightly rates.</span>
+            <span class="lang-ge">ყოველდღიურად ვაკვირდებით ფასებსა და მოთხოვნას ძველ თბილისში, ვერაზე, ვაკესა და საბურთალოზე.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="div">
+
+  <!-- BOOKING & CONTACT -->
+  <div class="bsec" id="book">
+    <div class="slabel lang-en" style="text-align:center">Book a Free Consultation</div>
+    <div class="slabel lang-ge" style="text-align:center">უფასო კონსულტაცია</div>
+    <h2 class="lang-en" style="text-align:center">Ready to get<br>more bookings?</h2>
+    <h2 class="lang-ge" style="text-align:center">მზად ხართ მეტი<br>ჯავშნისთვის?</h2>
+    <p style="color:var(--ivory-muted);margin-top:0.75rem;text-align:center;font-weight:300" class="lang-en">Fill this out and we'll send you a free audit of your listing within <strong class="font-num">24</strong> hours.</p>
+    <p style="color:var(--ivory-muted);margin-top:0.75rem;text-align:center;font-weight:300" class="lang-ge">შეავსეთ ფორმა და <strong class="font-num">24</strong> საათში გამოგიგზავნით თქვენი განცხადების უფასო აუდიტს.</p>
+
+    <div class="bform" id="consultation-box">
+      <div id="fc">
+        <form id="cf" action="https://formspree.io/f/xojpbonk" method="POST">
+          <input type="hidden" name="_subject" value="New OrivanHost (orivan.host) Inquiry!">
+          <input type="hidden" name="service_needed" id="service-input" value="Full Optimization (Fix Every Problem)">
+          <input type="hidden" name="bookings_per_year" id="bookings-input" value="0-5">
+
+          <div class="fg">
+            <label class="lang-en">Your name</label>
+            <label class="lang-ge">თქვენი სახელი</label>
+            <input type="text" name="name" id="f-name" placeholder="გიორგი / Giorgi" required>
+          </div>
+
+          <div class="fg">
+            <label class="lang-en">Phone (WhatsApp / Call)</label>
+            <label class="lang-ge">ტელეფონი (WhatsApp / ზარი)</label>
+            <input type="tel" name="phone" id="f-phone" class="font-num" placeholder="+995 597 99 41 40" required>
+          </div>
+
+          <!-- LUXURY SERVICE SELECTOR -->
+          <div class="fg">
+            <label class="lang-en">What do you need help with?</label>
+            <label class="lang-ge">რაში გჭირდებათ დახმარება?</label>
+            <div class="custom-select" id="service-select-wrap">
+              <div class="custom-select-trigger" id="service-trigger">
+                <span id="service-display">🛠️ სრული ოპტიმიზაცია (ყველა პრობლემის მოგვარება)</span>
+                <span class="custom-select-arrow">▼</span>
+              </div>
+              <div class="custom-select-dropdown" id="service-dropdown">
+                <div class="service-option-card active" data-val="Full Optimization (Fix Every Problem)" data-label-en="🛠️ Full Optimization (Fix Every Problem)" data-label-ge="🛠️ სრული ოპტიმიზაცია (ყველა პრობლემის მოგვარება)">
+                  <div class="soc-icon soc-emerald">🛠️</div>
+                  <div>
+                    <div class="soc-title">
+                      <span class="lang-en">Full Optimization (Fix Every Problem)</span>
+                      <span class="lang-ge">სრული ოპტიმიზაცია (ყველა პრობლემის მოგვარება)</span>
+                    </div>
+                    <div class="soc-desc">
+                      <span class="lang-en">Complete makeover: Airbnb partner photos, SEO title, pricing strategy & algorithm settings.</span>
+                      <span class="lang-ge">ფოტოები, სათაური, აღწერა, ფასების სტრატეგია და ალგორითმის გასწორება.</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="service-option-card" data-val="24/7 Guest Communication" data-label-en="💬 24/7 Guest Communication" data-label-ge="💬 24/7 კომუნიკაცია სტუმრებთან">
+                  <div class="soc-icon soc-burgundy">💬</div>
+                  <div>
+                    <div class="soc-title">
+                      <span class="lang-en"><span class="font-num">24/7</span> Guest Communication</span>
+                      <span class="lang-ge"><span class="font-num">24/7</span> კომუნიკაცია სტუმრებთან</span>
+                    </div>
+                    <div class="soc-desc">
+                      <span class="lang-en">Instant replies in English & Georgian, check-in coordination & 5-star reviews.</span>
+                      <span class="lang-ge">მყისიერი პასუხები სტუმრებს 24/7-ზე, ჩექ-ინის მართვა და 5-ვარსკვლავიანი შეფასებები.</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- REQUIRED AIRBNB LINK WITH "IDK HOW TO GET LINK" CHECKBOX -->
+          <div class="fg">
+            <label class="lang-en">Airbnb listing URL</label>
+            <label class="lang-ge">Airbnb ბმული</label>
+            <input type="url" name="listing_url" id="f-url" placeholder="https://airbnb.com/rooms/..." required>
+            
+            <div class="no-link-wrap" id="no-link-toggle" onclick="toggleNoLink()">
+              <div class="no-link-box" id="no-link-box">✓</div>
+              <div class="no-link-text">
+                <span class="lang-en">I don't know how to get my Airbnb link (skip — we'll guide you on the call)</span>
+                <span class="lang-ge">არ ვიცი როგორ ჩავაგდო Airbnb-ის ბმული (გამოტოვება — ზარის დროს დაგეხმარებით)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- BOOKINGS PER YEAR DROPDOWN -->
+          <div class="fg">
+            <label class="lang-en">Bookings per year?</label>
+            <label class="lang-ge">ჯავშნები წელიწადში?</label>
+            <div class="custom-select" id="bookings-select-wrap">
+              <div class="custom-select-trigger" id="bookings-trigger">
+                <span id="bookings-display" class="font-num">0–5</span>
+                <span class="custom-select-arrow">▼</span>
+              </div>
+              <div class="custom-select-dropdown" id="bookings-dropdown">
+                <div class="custom-option font-num" data-value="0-5">0–5</div>
+                <div class="custom-option font-num" data-value="6-20">6–20</div>
+                <div class="custom-option font-num" data-value="21-50">21–50</div>
+                <div class="custom-option font-num" data-value="50+">50+</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="fg">
+            <label class="lang-en">Message (optional)</label>
+            <label class="lang-ge">შეტყობინება (არასავალდებულო)</label>
+            <textarea name="message" id="f-msg" placeholder="მოგვწერეთ თქვენი ბინის შესახებ... / Tell us about your apartment in Tbilisi..."></textarea>
+          </div>
+
+          <button type="submit" class="sbtn" id="submit-btn">
+            <span class="plane-icon">✈️</span>
+            <span class="lang-en">Send Request — Get My Free Audit →</span>
+            <span class="lang-ge">გაგზავნა — მინდა უფასო აუდიტი →</span>
+          </button>
+        </form>
+      </div>
+
+      <div class="smsg" id="sm">
+        <div class="smsg-icon">✓</div>
+        <h3 class="lang-en">Request Sent!</h3>
+        <h3 class="lang-ge">მოთხოვნა გაიგზავნა!</h3>
+        <p class="lang-en">We received your request and will contact you within <strong class="font-num">24</strong> hours. You can also send your details directly via WhatsApp or Gmail below:</p>
+        <p class="lang-ge">თქვენი მოთხოვნა მიღებულია! <strong class="font-num">24</strong> საათში დაგიკავშირდებით. სურვილის შემთხვევაში მოგვწერეთ პირდაპირ WhatsApp-ში ან Gmail-ზე:</p>
+        <div class="dispatch-btns">
+          <a href="#" id="wa-direct-btn" target="_blank" class="dbtn dbtn-wa">💬 WhatsApp (<span class="font-num">597 99 41 40</span>)</a>
+          <a href="#" id="gmail-direct-btn" target="_blank" class="dbtn dbtn-gmail">✉️ Gmail (messagesforairbnb@gmail.com)</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIRECT CONTACT CARDS -->
+    <div class="contact-cards">
+      <div class="ccard">
+        <div class="ccard-title">WhatsApp <span class="font-num">24/7</span></div>
+        <div class="ccard-val font-num">+995 597 99 41 40</div>
+        <a href="https://wa.me/995597994140?text=%E1%83%92%E1%83%90%E1%83%9B%E1%83%90%E1%83%A0%E1%83%AF%E1%83%9D%E1%83%91%E1%83%90!%20OrivanHost-%E1%83%98%E1%83%A1%20Airbnb%20%E1%83%9D%E1%83%9E%E1%83%A2%E1%83%98%E1%83%9B%E1%83%98%E1%83%96%E1%83%90%E1%83%AA%E1%83%98%E1%83%90%20%E1%83%9B%E1%83%90%E1%83%98%E1%83%9C%E1%83%A2%E1%83%94%E1%83%A0%E1%83%94%E1%83%A1%E1%83%94%E1%83%91%E1%83%A1." target="_blank" class="ccard-action">
+          <span class="lang-en">Chat on WhatsApp</span>
+          <span class="lang-ge">მოგვწერეთ WhatsApp-ში</span>
+        </a>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title"><span class="lang-en">Direct Call</span><span class="lang-ge">პირდაპირი ზარი</span></div>
+        <div class="ccard-val font-num">+995 597 99 41 40</div>
+        <a href="tel:+995597994140" class="ccard-action">
+          <span class="lang-en">Call Now</span>
+          <span class="lang-ge">დარეკეთ ახლავე</span>
+        </a>
+      </div>
+      <div class="ccard">
+        <div class="ccard-title">Email</div>
+        <div class="ccard-val">messagesforairbnb@gmail.com</div>
+        <a href="mailto:messagesforairbnb@gmail.com?subject=OrivanHost%20Airbnb%20Consultation" class="ccard-action">
+          <span class="lang-en">Send Email</span>
+          <span class="lang-ge">მეილის გაგზავნა</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <a href="https://orivan.host/" class="flogo">Orivan<em>Host</em></a>
+    <div class="flinks">
+      <a href="https://orivan.host/">orivan.host</a>
+      <a href="tel:+995597994140" class="font-num">+995 597 99 41 40</a>
+      <a href="https://wa.me/995597994140" target="_blank">WhatsApp</a>
+      <a href="mailto:messagesforairbnb@gmail.com">messagesforairbnb@gmail.com</a>
+    </div>
+    <div style="font-size:0.78rem;color:var(--muted)">© <span class="font-num">2026</span> OrivanHost (orivan.host) · Tbilisi, Georgia</div>
+  </footer>
+</div>
+
+<script>
+// Clear any old language cookies so it NEVER forces English on load
+try {
+  localStorage.removeItem('lang');
+  localStorage.removeItem('orvian_lang');
+  localStorage.removeItem('orivan_lang');
+  localStorage.removeItem('binaboost_lang');
+} catch(e){}
+
+// Navbar scroll effect
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40);
+});
+
+// Language state (Always starts in Georgian 'ge' by default)
+let currentLang = 'ge';
+let noLinkChecked = false;
+
+function chooseInitialLang(l){
+  setLang(l, true);
+  const gate = document.getElementById('lang-gate');
+  gate.classList.add('hidden');
+  document.body.classList.remove('gate-locked');
+}
+
+function setLang(l, skipAnim){
+  currentLang = l;
+  if(!skipAnim){
+    document.body.classList.add('lang-switching');
+    setTimeout(()=>{
+      applyLang(l);
+      document.body.classList.remove('lang-switching');
+    },180);
+    const toast = document.getElementById('lang-toast');
+    toast.textContent = l==='ge' ? '🇬🇪 ენა შეიცვალა: ქართული' : '🇬🇧 Language switched to English';
+    toast.classList.add('show');
+    setTimeout(()=>toast.classList.remove('show'),2200);
+  } else {
+    applyLang(l);
+  }
+}
+
+function applyLang(l){
+  const isLocked = document.body.classList.contains('gate-locked');
+  document.body.className = (l==='ge' ? 'ge' : '') + (isLocked ? ' gate-locked' : '');
+  document.documentElement.lang = l==='ge' ? 'ka' : 'en';
+  document.getElementById('bge').className = 'lb'+(l==='ge'?' active':'');
+  document.getElementById('ben').className = 'lb'+(l==='en'?' active':'');
+  const activeService = document.querySelector('.service-option-card.active');
+  if(activeService){
+    document.getElementById('service-display').textContent = l==='ge' ? activeService.dataset.labelGe : activeService.dataset.labelEn;
+  }
+  updateNoLinkInputText();
+}
+
+// Toggle "I don't know how to get my Airbnb link" checkbox
+function toggleNoLink(){
+  noLinkChecked = !noLinkChecked;
+  const wrap = document.getElementById('no-link-toggle');
+  const urlInput = document.getElementById('f-url');
+  wrap.classList.toggle('active', noLinkChecked);
+
+  if(noLinkChecked){
+    urlInput.removeAttribute('required');
+    urlInput.type = 'text';
+    urlInput.readOnly = true;
+    urlInput.classList.add('skipped-url');
+    updateNoLinkInputText();
+  } else {
+    urlInput.type = 'url';
+    urlInput.readOnly = false;
+    urlInput.required = true;
+    urlInput.classList.remove('skipped-url');
+    urlInput.value = '';
+    urlInput.placeholder = 'https://airbnb.com/rooms/...';
+  }
+}
+
+function updateNoLinkInputText(){
+  const urlInput = document.getElementById('f-url');
+  if(noLinkChecked && urlInput){
+    urlInput.value = currentLang==='ge'
+      ? '✓ გამოვტოვებ — ზარის დროს დამეხმარეთ ბმულის პოვნაში'
+      : '✓ Skipped — Please guide me on the call to find my link';
+  }
+}
+
+// Force Georgian underneath immediately on page load
+applyLang('ge');
+
+// Animated Scroll to Consultation
+function scrollToConsultation(e){
+  if(e) e.preventDefault();
+  const box = document.getElementById('consultation-box');
+  box.scrollIntoView({behavior:'smooth',block:'center'});
+  box.classList.add('pulse-highlight');
+  setTimeout(()=>box.classList.remove('pulse-highlight'),1800);
+}
+
+// Select Service from Cards & Scroll
+function chooseServiceAndScroll(serviceVal){
+  const cards = document.querySelectorAll('.service-option-card');
+  cards.forEach(c=>{
+    if(c.dataset.val === serviceVal){
+      c.click();
+    }
+  });
+  scrollToConsultation();
+}
+
+// Interactive Revenue Calculator
+function updateCalc(rate){
+  const r = parseInt(rate,10);
+  const before = r * 10;
+  const grossAfter = r * 24;
+  const netAfter = Math.round(grossAfter * 0.85);
+  document.getElementById('calc-rate').textContent = '$' + r;
+  document.getElementById('calc-before').textContent = '$' + before.toLocaleString() + '/mo';
+  document.getElementById('calc-after').textContent = '$' + netAfter.toLocaleString() + '/mo';
+}
+
+// Custom Service Dropdown
+const sTrigger = document.getElementById('service-trigger');
+const sDropdown = document.getElementById('service-dropdown');
+const sDisplay = document.getElementById('service-display');
+const sInput = document.getElementById('service-input');
+
+sTrigger.addEventListener('click',()=>{
+  sTrigger.classList.toggle('open');
+  sDropdown.classList.toggle('open');
+});
+document.querySelectorAll('.service-option-card').forEach(card=>{
+  card.addEventListener('click',()=>{
+    document.querySelectorAll('.service-option-card').forEach(c=>c.classList.remove('active'));
+    card.classList.add('active');
+    sInput.value = card.dataset.val;
+    sDisplay.textContent = currentLang==='ge' ? card.dataset.labelGe : card.dataset.labelEn;
+    sTrigger.classList.remove('open');
+    sDropdown.classList.remove('open');
+  });
+});
+
+// Custom Bookings Dropdown
+const bTrigger = document.getElementById('bookings-trigger');
+const bDropdown = document.getElementById('bookings-dropdown');
+const bDisplay = document.getElementById('bookings-display');
+const bInput = document.getElementById('bookings-input');
+
+bTrigger.addEventListener('click',()=>{
+  bTrigger.classList.toggle('open');
+  bDropdown.classList.toggle('open');
+});
+document.querySelectorAll('#bookings-dropdown .custom-option').forEach(opt=>{
+  opt.addEventListener('click',()=>{
+    bInput.value = opt.dataset.value;
+    bDisplay.textContent = opt.textContent.trim();
+    bTrigger.classList.remove('open');
+    bDropdown.classList.remove('open');
+  });
+});
+
+document.addEventListener('click',e=>{
+  if(!document.getElementById('service-select-wrap').contains(e.target)){
+    sTrigger.classList.remove('open');
+    sDropdown.classList.remove('open');
+  }
+  if(!document.getElementById('bookings-select-wrap').contains(e.target)){
+    bTrigger.classList.remove('open');
+    bDropdown.classList.remove('open');
+  }
+});
+
+// Scroll Reveal Observer
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('visible')});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// Dual Form Submission (Formspree + FormSubmit to messagesforairbnb@gmail.com)
+const form = document.getElementById('cf');
+form.addEventListener('submit', async e=>{
+  e.preventDefault();
+  const btn = document.getElementById('submit-btn');
+  btn.classList.add('sending');
+  btn.disabled = true;
+
+  const name = document.getElementById('f-name').value;
+  const phone = document.getElementById('f-phone').value;
+  const service = sInput.value;
+  const url = noLinkChecked
+    ? 'Client does not know how to get Airbnb link — guide on call'
+    : (document.getElementById('f-url').value || 'Not provided');
+  const bookings = bInput.value;
+  const msg = document.getElementById('f-msg').value || 'None';
+
+  const summaryText = `New OrivanHost (orivan.host) Request!\nName: ${name}\nPhone: ${phone}\nService: ${service}\nAirbnb URL: ${url}\nBookings/yr: ${bookings}\nMessage: ${msg}`;
+  document.getElementById('wa-direct-btn').href = `https://wa.me/995597994140?text=${encodeURIComponent(summaryText)}`;
+  document.getElementById('gmail-direct-btn').href = `https://mail.google.com/mail/?view=cm&fs=1&to=messagesforairbnb@gmail.com&su=${encodeURIComponent('OrivanHost Consultation - ' + name)}&body=${encodeURIComponent(summaryText)}`;
+
+  const formData = new FormData(form);
+  formData.set('listing_url', url);
+  try {
+    await Promise.allSettled([
+      fetch('https://formspree.io/f/xojpbonk', {method:'POST', body:formData, headers:{Accept:'application/json'}}),
+      fetch('https://formsubmit.co/ajax/messagesforairbnb@gmail.com', {method:'POST', body:formData, headers:{Accept:'application/json'}})
+    ]);
+  } catch(err){}
+
+  setTimeout(()=>{
+    document.getElementById('fc').style.display = 'none';
+    document.getElementById('sm').style.display = 'block';
+  }, 650);
+});
+</script>
+</body>
+</html>
